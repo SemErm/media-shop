@@ -1,0 +1,36 @@
+<span (click)="goBack()">Back</span>
+<div class="panel panel-primary" *ngIf="movie">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 class="panel-title">{{movie.title}}</h3>
+      </div>
+      <div class="col-md-8">
+        <h3 class="panel-title">{{movie.tagline}}</h3>
+      </div>
+    </div>
+
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="img-thumbnail" src="{{pathImage+movie.poster_path}}">
+        <div class="vote">
+          {{movie.vote_average}}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Release date: </strong>{{movie.release_date}}</li>
+          <li class="list-group-item"><strong>Budget: </strong>{{movie.budget}}$</li>
+          <li class="list-group-item"><strong>Production companies: </strong><span *ngFor="let comp of movie.production_companies">"{{comp.name}}" </span></li>
+          <li class="list-group-item"><strong>Production countries: </strong><span *ngFor="let count of movie.production_countries">"{{count.name}}" </span></li>
+          <li class="list-group-item"><strong>Homepage: </strong><a href="{{movie.homepage}}" target="_blank">{{movie.homepage}}</a></li>
+          <li class="list-group-item"><strong>Genres: </strong><span *ngFor="let genre of movie.genres">"{{genre.name}}" </span></li>
+          <li class="list-group-item"><strong>Overview: </strong>{{movie.overview}}</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
