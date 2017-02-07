@@ -52,13 +52,13 @@ export class GamesService {
 
   getGameModes() {
     let options = new RequestOptions({headers: headers});
-    return this._http.get(api_url + 'game_modes/' + '?fields=id,name,games&limit=20', options)
+    return this._http.get(api_url + 'game_modes/?fields=id,name,games&limit=20', options)
       .map(res => res.json());
   }
 
   getThemes() {
     let options = new RequestOptions({headers: headers});
-    return this._http.get(api_url + 'themes/' + '?fields=id,name,games&limit=20', options)
+    return this._http.get(api_url + 'themes/?fields=id,name,games&limit=20', options)
       .map(res => res.json());
   }
 
@@ -75,7 +75,17 @@ export class GamesService {
   getGame(id: number) {
     let options = new RequestOptions({headers: headers});
     return this._http.get(api_url + 'games/' + id + '?fields=*', options)
-      .map(res =>res.json()[0]);
+      .map(res => res.json()[0]);
+  }
+
+  getFilterGame(params: any) {
+    let options = new RequestOptions({headers: headers});
+    let require = api_url + 'games/?' + (params.search ? 'search=' + params.search + '&' : '') +
+      (params.genre ? 'filter[genres][eq]=' + params.genre : '') +
+      (params.game_mode ? '&filter[game_modes][eq]=' + params.game_mode : '') +
+      (params.theme ? '&filter[themes][eq]=' + params.theme : '') +'&limit=50';
+    return this._http.get(require, options)
+      .map(res => res.json());
   }
 
 }

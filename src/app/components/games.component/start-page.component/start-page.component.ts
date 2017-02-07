@@ -20,8 +20,6 @@ interface sectionGenre {
 export class StartPageComponent implements OnInit {
   private randomGenres: sectionGenre[] = [];
   private resentlyGames: Array<any>;
-  private pathImage = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
-  private pathNoImage = '../../../../no-image.png';
   private currentRate: number;
 
   constructor(private gamesService: GamesService,
@@ -57,15 +55,12 @@ export class StartPageComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.getCurruntRate()
-      .subscribe(rate => {
-        this.currentRate = rate;
-      });
+      .subscribe(rate => this.currentRate = rate);
+
     this.gamesService.getNewGames()
-      .subscribe(games=> this.resentlyGames = games);
+      .subscribe(games => this.resentlyGames = games);
+
     this.setRandomGenres();
   }
 
-  goToDetail(game: any) {
-    this.router.navigate(['games/detail', game.id]);
-  }
 }

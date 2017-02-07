@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -11,4 +12,10 @@ export class SectionGamesComponent {
   private pathNoImage = '../../../../no-image.png';
   @Input() games;
   @Input() title;
+
+  constructor(private router: Router){}
+
+  goToDetail(game: any) {
+    this.router.navigate(['games/detail', game.id]);
+  }
 }

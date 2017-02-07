@@ -1,18 +1,30 @@
-<div class="panel ">
+<div class="panel" *ngIf="genres && gameModes && themes">
   <h3>Filter</h3>
   <hr>
-  <form>
-    <label>Genre</label>
-    <select class="form-control" *ngIf="genres">
-      <option *ngFor="let genre of genres">{{genre.name}}</option>
-    </select>
-    <label>Game mode</label>
-    <select class="form-control" *ngIf="gameModes">
-      <option *ngFor="let gameMode of gameModes">{{gameMode.name}}</option>
-    </select>
-    <label>Theme</label>
-    <select class="form-control" *ngIf="themes">
-      <option *ngFor="let theme of themes">{{theme.name}}</option>
-    </select>
+  <form #myForm>
+    <div class="form-group">
+      <label class="control-label">Genre</label>
+      <select class="form-control" [ngModel]="selectedGenre" (ngModelChange)="onSelectGenre($event)" name="genres">
+        <option *ngFor="let genre of genres" [ngValue]="genre.id">{{genre.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Game mode</label>
+      <select class="form-control" [ngModel]="selectedGameMode" (ngModelChange)="onSelectGameMode($event)" name="gameMode">
+        <option *ngFor="let gameMode of gameModes" [ngValue]="gameMode.id">{{gameMode.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Theme</label>
+      <select class="form-control" [ngModel]="selectedTheme" (ngModelChange)="onSelectTheme($event)" name="themes">
+        <option *ngFor="let theme of themes" [ngValue]="theme.id" >{{theme.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Search</label>
+      <input class="form-control" placeholder="Search..." type="text" [(ngModel)]="search" name="search">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="goToFilter()" >Filter</button>
+    <button class="btn btn-default" (click)="myForm.reset()">Reset</button>
   </form>
 </div>

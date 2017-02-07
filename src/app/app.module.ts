@@ -18,7 +18,7 @@ import {NewMusicsComponent} from "./components/musics.component/new-musics.compo
 import {DetailMusicComponent} from "./components/musics.component/detail-music.component/detail-music.component";
 import {FilterGamesComponent} from "./components/games.component/filter-games.component/filter-games.component";
 import {StartPageComponent} from "./components/games.component/start-page.component/start-page.component";
-import {SearchPageComponent} from "./components/games.component/filter-page.component/filter-page.component";
+import {FilterPageComponent} from "./components/games.component/filter-page.component/filter-page.component";
 import {SectionGamesComponent} from "./components/games.component/section-games.component/section-games.component";
 
 
@@ -38,7 +38,7 @@ import {SectionGamesComponent} from "./components/games.component/section-games.
     DetailMusicComponent,
     FilterGamesComponent,
     StartPageComponent,
-    SearchPageComponent,
+    FilterPageComponent,
     SectionGamesComponent
   ],
   imports: [

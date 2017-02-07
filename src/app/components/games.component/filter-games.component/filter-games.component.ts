@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GamesService} from "../../../services/games.service";
-import {genres} from "../../movies.component/movies.component";
+import {Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -15,17 +15,51 @@ export class FilterGamesComponent implements OnInit {
   private gameModes: Array<any>;
   private themes: Array<any>;
 
-  constructor(private gameService: GamesService) {
+  private selectedGenre: any = 0;
+  private selectedGameMode: any = 0;
+  private selectedTheme: any = 0;
+  private search: string = '';
+
+  constructor(private gameService: GamesService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.gameService.getGenres()
-      .subscribe(genres => this.genres = genres);
+      .subscribe(genres => {
+        this.genres = genres;
+      });
 
     this.gameService.getGameModes()
-      .subscribe(gameModes => this.gameModes = gameModes);
+      .subscribe(gameModes => {
+        this.gameModes = gameModes;
+      });
 
     this.gameService.getThemes()
-      .subscribe(themes => this.themes  = themes);
+      .subscribe(themes => {
+        this.themes = themes;
+      });
   }
+
+  onSelectGenre(genre: any) {
+    this.selectedGenre = genre;
+  }
+
+  onSelectGameMode(gameMode: any) {
+    this.selectedGameMode = gameMode;
+  }
+
+  onSelectTheme(theme: any) {
+    this.selectedTheme = theme;
+  }
+
+  goToFilter() {
+    this.router.navigate(['games/filter'], {
+      queryParams: {
+        search: this.search, genre: this.selectedGenre, game_mode: this.selectedGameMode,
+        theme: this.selectedTheme
+      }
+    });
+  }
+
 }
