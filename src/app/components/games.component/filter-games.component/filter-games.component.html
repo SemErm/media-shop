@@ -1,0 +1,18 @@
+<div class="panel ">
+  <h3>Filter</h3>
+  <hr>
+  <form>
+    <label>Genre</label>
+    <select class="form-control" *ngIf="genres">
+      <option *ngFor="let genre of genres">{{genre.name}}</option>
+    </select>
+    <label>Game mode</label>
+    <select class="form-control" *ngIf="gameModes">
+      <option *ngFor="let gameMode of gameModes">{{gameMode.name}}</option>
+    </select>
+    <label>Theme</label>
+    <select class="form-control" *ngIf="themes">
+      <option *ngFor="let theme of themes">{{theme.name}}</option>
+    </select>
+  </form>
+</div>

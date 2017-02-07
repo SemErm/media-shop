@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-4 col-md-2" *ngFor="let music of musics">
+    <div class="thumbnail">
+      <img src="{{music.images[1].url}}" alt="{{music.name}}" (click)="goToDetail(music)">
+      <div class="caption">
+        <h4 class="text-center" (click)="goToDetail(music)">{{music.name}}</h4>
+        <h6>Artists: </h6>
+        <span *ngFor="let artist of music.artists">{{artist.name}}</span>
+        <p class="text-center">
+          <a href="#" class="btn btn-primary" role="button">Add</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,7 @@ export class MoviesComponent implements OnInit {
   private genres: genres[];
   private randomGenres: genres[] = [];
   private pathImage = 'https://image.tmdb.org/t/p/w500/';
+  private pathNoImage = '../../../../no-image.png';
 
   constructor(private moviesService: MoviesService,
               private router: Router) {

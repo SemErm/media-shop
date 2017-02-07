@@ -1,19 +1,32 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
-const api_key = '544ce33d881d9c8b4f234cc65fa42475';
-const api_url = 'https://api.themoviedb.org/3';
 
+const api_key = 'Bearer BQD3Ty6f28uKiewdms9SUIw9wx0ilAQ0NLRb_gnIX_VwHsu5lJ';
+const api_url = 'https://api.spotify.com/v1';
+const headers = new Headers({
+  "Authorization": api_key
+});
 @Injectable()
 export class MusicsService {
 
   constructor(private _http: Http) {
   }
 
-  getPopularMusics() {
-    const countMovies = 6;
-    return this._http.get(api_url + '/movie/now_playing?api_key=' + api_key + '&language=en-US&page=1')
-      .map(res => res.json().results.slice(0, countMovies));
+  connect(){
+    return this._http.get('https://accounts.spotify.com/authorize?client_id=2d40549cb60241aaa79db1c03c2c4c8c&response_type=code&redirect_uri=http://localhost:4200')
+      .map(res=>res.json());
+  }
+  getNewReleases() {
+    const countMusics = 6;
+    let option = new RequestOptions({headers: headers});
+    return this._http.get(api_url + '/search?type=album')
+      .map(res => res.json());
+  }
+
+  getAlbum(id: number){
+    return this._http.get(api_url+'/albums/'+id)
+      .map(res=>res.json());
   }
 
 }

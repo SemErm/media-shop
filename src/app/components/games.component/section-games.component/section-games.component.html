@@ -1,3 +1,5 @@
+<h1 *ngIf="title">{{title}}</h1>
+<hr>
 <div class="row">
   <div class="col-sm-4 col-md-2" *ngFor="let game of games">
     <div class="thumbnail">
@@ -5,7 +7,7 @@
       <div class="caption">
         <h4 class="text-center" (click)="goToDetail(game)">{{game.name}}</h4>
         <p class="text-center">
-          <a href="#" class="btn btn-primary" role="button">Add</a>
+          <a href="#" class="btn btn-primary" role="button">Add <span class="glyphicon glyphicon-shopping-cart"></span></a>
         </p>
       </div>
     </div>

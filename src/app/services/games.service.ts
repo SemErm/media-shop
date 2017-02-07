@@ -33,7 +33,7 @@ export class GamesService {
 
   getNameGenre(id: string[]) {
     let options = new RequestOptions({headers: headers});
-    return this._http.get(api_url + 'genres/' + _.join(id, ',') + '?fields=*&limit=20', options)
+    return this._http.get(api_url + 'genres/' + _.join(id, ',') + '?fields=id,name&limit=20', options)
       .map(res => res.json())
       .map(res => {
         let result: string[] = [];
@@ -47,6 +47,18 @@ export class GamesService {
   getGenres() {
     let options = new RequestOptions({headers: headers});
     return this._http.get(api_url + 'genres/' + '?fields=id,name,games&limit=20', options)
+      .map(res => res.json());
+  }
+
+  getGameModes() {
+    let options = new RequestOptions({headers: headers});
+    return this._http.get(api_url + 'game_modes/' + '?fields=id,name,games&limit=20', options)
+      .map(res => res.json());
+  }
+
+  getThemes() {
+    let options = new RequestOptions({headers: headers});
+    return this._http.get(api_url + 'themes/' + '?fields=id,name,games&limit=20', options)
       .map(res => res.json());
   }
 

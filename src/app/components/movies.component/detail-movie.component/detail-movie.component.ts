@@ -16,6 +16,7 @@ import 'rxjs/add/operator/switchMap';
 export class DetailMovieComponent implements OnInit {
   private movie: Object;
   private pathImage = 'https://image.tmdb.org/t/p/w500/';
+  private pathNoImage = '../../../../no-image.png';
 
   constructor(private moviesService: MoviesService,
               private route: ActivatedRoute,

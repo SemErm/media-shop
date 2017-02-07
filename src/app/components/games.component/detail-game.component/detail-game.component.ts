@@ -29,6 +29,7 @@ export class DetailGameComponent implements OnInit {
       .switchMap((params: Params) => this.gamesService.getGame(+params['id']))
       .subscribe(game => {
         this.game = game;
+        console.log(this.game);
         if (game.developers) {
           this.gamesService.getDevelopers(game.developers).subscribe(res => game.developers = res);
         }

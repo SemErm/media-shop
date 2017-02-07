@@ -1,0 +1,2 @@
+<section-games [title]="'Recently Released'" [games]="resentlyGames"></section-games>
+<section-games *ngFor="let genre of randomGenres" [title]="genre.name" [games]="genre.games"></section-games>
