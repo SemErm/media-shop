@@ -15,7 +15,7 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gamesService.getNewGames()
-      .subscribe(games => this.resentlyGames = games);
+    /*this.gamesService.getNewGames()
+      .subscribe(games => this.resentlyGames = games);*/
   }
 }

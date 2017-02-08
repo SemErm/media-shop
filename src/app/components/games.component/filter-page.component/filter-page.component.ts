@@ -33,9 +33,9 @@ export class FilterPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route
+    /*this.route
       .queryParams
-      .subscribe(params => this.showFilterGames(params));
+      .subscribe(params => this.showFilterGames(params));*/
   }
 
   goToDetail(game: any) {

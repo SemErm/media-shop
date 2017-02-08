@@ -54,13 +54,13 @@ export class StartPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.profileService.getCurruntRate()
+    /*this.profileService.getCurruntRate()
       .subscribe(rate => this.currentRate = rate);
 
     this.gamesService.getNewGames()
       .subscribe(games => this.resentlyGames = games);
 
-    this.setRandomGenres();
+    this.setRandomGenres();*/
   }
 
 }
