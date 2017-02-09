@@ -7,11 +7,13 @@ import {MusicsService} from "./services/musics.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FilterComponent} from "./filter/filter.component";
 import {FilterPageComponent} from "./filter-page/filter-page.component";
+import {ItemComponent} from "./item/item.component";
 
 @NgModule({
   declarations: [
     FilterComponent,
-    FilterPageComponent
+    FilterPageComponent,
+    ItemComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import {FilterPageComponent} from "./filter-page/filter-page.component";
   ],
   exports: [
     FilterComponent,
-    FilterPageComponent
+    FilterPageComponent,
+    ItemComponent
   ]
 })
 export class SharedModule {

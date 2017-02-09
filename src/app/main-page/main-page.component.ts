@@ -21,9 +21,10 @@ export class MainPageComponent implements OnInit {
     return movies.map(movie => {
       return {
         id: movie.id,
+        type: 'movie',
         name: movie.title,
         poster: this.pathImage + movie.poster_path,
-        price: (movie.vote_average * 5.5).toFixed(2)
+        price: (movie.vote_average * 5.5 + 5).toFixed(2)
       }
     });
   }

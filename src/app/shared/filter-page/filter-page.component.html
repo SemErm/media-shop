@@ -1,0 +1,7 @@
+<h1>Filter Page</h1>
+<div class="row" *ngFor="let section of items">
+  <div class="col-sm-4 col-md-2" *ngFor="let item of section">
+    <app-item [item]="item"></app-item>
+  </div>
+</div>
+

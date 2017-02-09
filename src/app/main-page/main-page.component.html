@@ -2,14 +2,6 @@
 <hr>
 <div class="row">
   <div class="col-sm-4 col-md-2" *ngFor="let movie of nowPlayingMovies">
-    <div class="thumbnail">
-      <img src="{{movie.poster}}" alt="{{movie.name}}" (click)="goToDetail(movie)">
-      <div class="caption">
-        <h4 class="text-center" (click)="goToDetail(movie)">{{movie.name}}</h4>
-        <p class="text-center">
-          <a href="#" class="btn btn-primary" role="button">Add <span class="glyphicon glyphicon-shopping-cart"></span> $ {{movie.price}}</a>
-        </p>
-      </div>
-    </div>
+    <app-item [item]="movie"></app-item>
   </div>
 </div>

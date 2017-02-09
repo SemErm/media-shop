@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, URLSearchParams,RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 
@@ -57,5 +57,19 @@ export class MoviesService {
   getMovie(id: number) {
     return this._http.get(api_url + '/movie/' + id + '?api_key=' + api_key + '&language=en-US')
       .map(res => res.json());
+  }
+
+  getMoviesByFilter(filter) {
+    let params = new URLSearchParams();
+    params.set('api_key', api_key);
+    for (let val of Object.keys(filter)) {
+      params.set(val, filter[val]);
+    }
+    let options = new RequestOptions({
+      search: params
+    });
+    console.log(options);
+    return this._http.get(api_url + '/discover/movie', options)
+      .map(res => res.json().results);
   }
 }

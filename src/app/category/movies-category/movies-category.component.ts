@@ -1,13 +1,4 @@
-import {Component, OnInit} from "@angular/core";
-import {MoviesService} from "../../shared/services/movies.service";
-import * as _ from 'lodash';
-import {Router} from "@angular/router";
-
-interface categoryGenre {
-  id: number;
-  name: string;
-  movies: any[];
-}
+import {Component,} from "@angular/core";
 
 @Component({
   moduleId: module.id,
@@ -17,5 +8,4 @@ interface categoryGenre {
 
 export class MoviesCategoryComponent{
   private category = 'movies';
-
 }

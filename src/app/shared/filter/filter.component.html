@@ -15,10 +15,7 @@
     </select>
   </div>
   <div class="form-group">
-    <input formControlName="name" placeholder="Title Movie" class="form-control">
-  </div>
-  <div class="form-group">
-    <button class="btn btn-info">Filter</button>
+    <button class="btn btn-info" (click)="filterPage()">Filter</button>
     <button class="btn btn-danger" (click)="filterForm.reset()">Reset</button>
   </div>
 </form>

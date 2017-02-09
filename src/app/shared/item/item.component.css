@@ -1,0 +1,9 @@
+.thumbnail img, .thumbnail h4{
+  cursor: pointer;
+}
+
+.thumbnail h4{
+  font-size: 20px;
+  height: 80px;
+  overflow: hidden;
+}
