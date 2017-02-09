@@ -1,43 +1,9 @@
 <div class="row">
   <div class="col-md-2">
-    <filter></filter>
+    <filter [nameFilter]="category"></filter>
   </div>
   <div class="col-md-10">
-    <h1>Movies</h1>
-    <hr>
-    <div class="row">
-      <div class="col-sm-4 col-md-2" *ngFor="let movie of nowPlayingMovies">
-        <div class="thumbnail">
-          <img src="{{movie.poster}}" alt="{{movie.name}}" (click)="goToDetail(movie)">
-          <div class="caption">
-            <h4 class="text-center" (click)="goToDetail(movie)">{{movie.name}}</h4>
-            <p class="text-center">
-              <a href="#" class="btn btn-primary" role="button">Add <span
-                class="glyphicon glyphicon-shopping-cart"></span> $ {{movie.price}}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div *ngFor="let genre of randomGenres">
-      <h1>{{genre.name}}</h1>
-      <hr>
-      <div class="row">
-        <div class="col-sm-4 col-md-2" *ngFor="let movie of genre.movies">
-          <div class="thumbnail">
-            <img src="{{movie.poster}}" alt="{{movie.name}}" (click)="goToDetail(movie)">
-            <div class="caption">
-              <h4 class="text-center" (click)="goToDetail(movie)">{{movie.name}}</h4>
-              <p class="text-center">
-                <a href="#" class="btn btn-primary" role="button">Add <span
-                  class="glyphicon glyphicon-shopping-cart"></span> $ {{movie.price}}</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

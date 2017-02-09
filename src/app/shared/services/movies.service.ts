@@ -16,11 +16,9 @@ export class MoviesService {
 
   getNowPlayingMovies() {
     if (!this.nowPlaying.length) {
-      console.log('http');
       return this.loadNowPlayingMovies();
     }
     else {
-      console.log('service');
       return Observable.of(this.nowPlaying);
     }
   }
@@ -34,7 +32,6 @@ export class MoviesService {
   }
 
   getGenres() {
-    console.log(this.genres);
     if (!this.genres.length) {
       return this.loadGenres();
     }
