@@ -30,11 +30,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Profile <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log in</li>
+              <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li>
             </ul>
           </li>
         </ul>
@@ -47,7 +46,7 @@
 </div>
 
 <footer class="footer">
-    <p class="text-muted">Copyright (c) 2017</p>
+  <p class="text-muted">Copyright (c) 2017</p>
 </footer>
 </body>
 </html>
