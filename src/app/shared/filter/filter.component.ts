@@ -3,7 +3,6 @@ import {GamesService} from "../services/games.service";
 import {MoviesService} from "../services/movies.service";
 import {FormBuilder, FormGroup, FormControl} from "@angular/forms";
 import {Router, ActivatedRoute} from "@angular/router";
-import {URLSearchParams} from "@angular/http";
 
 
 @Component({
@@ -42,14 +41,16 @@ export class FilterComponent implements OnInit {
   }
 
   filterPage() {
+    let filter: any = {};
     switch (this.nameFilter) {
       case 'movies': {
-        let params = {nameFilter: this.nameFilter};
         for (let val of Object.keys(this.filterForm.value)) {
-          params[val]= this.filterForm.value[val];
+          if (val === 'genres') filter['with_genres'] = this.filterForm.value[val];
+          if (val === 'dateTo') filter['primary_release_date.lte'] = this.filterForm.value[val];
+          if (val === 'dateFrom') filter['primary_release_date.gte'] = this.filterForm.value[val];
         }
-        console.log(params);
-        this.router.navigate(['movies/filter'], {queryParams: params});
+        this.router.navigate(['movies/filter'], {queryParams: {filter: this.nameFilter}});
+        this._moviesService.getMoviesByFilter(filter);
         break;
       }
     }

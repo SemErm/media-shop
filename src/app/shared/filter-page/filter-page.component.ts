@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {MoviesService} from "../services/movies.service";
 import {ActivatedRoute} from "@angular/router";
+import {Subscription} from 'rxjs/Subscription';
 import * as _ from 'lodash';
 @Component({
   moduleId: module.id,
@@ -10,6 +11,7 @@ import * as _ from 'lodash';
 export class FilterPageComponent implements OnInit {
   private pathImage = 'https://image.tmdb.org/t/p/w500/';
   private items = [];
+  private subscription: Subscription;
 
   constructor(private moviesService: MoviesService,
               private route: ActivatedRoute) {
@@ -28,21 +30,12 @@ export class FilterPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let params = this.route.snapshot.queryParams;
-    let filterName = this.route.snapshot.queryParams['nameFilter'];
-    let filter: any = {};
+    let filterName = this.route.snapshot.queryParams['filter'];
     switch (filterName) {
       case 'movies': {
-        for (let val of Object.keys(params)) {
-          if (val === 'genres') filter['with_genres'] = params[val];
-          if (val === 'dateTo') filter['primary_release_date.lte'] = params[val];
-          if (val === 'dateFrom') filter['primary_release_date.gte'] = params[val];
-        }
-        this.moviesService.getMoviesByFilter(filter)
+        this.subscription = this.moviesService.updateSource$
           .subscribe(res => {
-            console.log(res);
             this.items = _.chunk(this.generateMovies(res), 6);
-            console.log(this.items);
           });
         break;
       }
