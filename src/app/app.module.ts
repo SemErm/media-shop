@@ -9,6 +9,7 @@ import {SharedModule} from "./shared/shared.module";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
 import {MovieItemComponent} from "./items/movie-item/movie-item.component";
+import {FilterComponent} from "./shared/filter/filter.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MovieItemComponent} from "./items/movie-item/movie-item.component";
     AppComponent,
     MainPageComponent,
     MoviesCategoryComponent,
-    MovieItemComponent
+    MovieItemComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
