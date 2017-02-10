@@ -3,6 +3,7 @@ import {MoviesService} from "../services/movies.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from 'rxjs/Subscription';
 import * as _ from 'lodash';
+
 @Component({
   moduleId: module.id,
   selector: 'filter-page',

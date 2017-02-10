@@ -1,13 +1,14 @@
-import {NgModule} from '@angular/core';
+import {NgModule, ModuleWithProviders} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {GamesService} from "./services/games.service";
 import {MoviesService} from "./services/movies.service";
 import {MusicsService} from "./services/musics.service";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FilterComponent} from "./filter/filter.component";
 import {FilterPageComponent} from "./filter-page/filter-page.component";
 import {ItemComponent} from "./item/item.component";
+import {Auth} from "./services/auth.service";
 
 @NgModule({
   declarations: [
@@ -20,11 +21,6 @@ import {ItemComponent} from "./item/item.component";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    GamesService,
-    MoviesService,
-    MusicsService
-  ],
   exports: [
     FilterComponent,
     FilterPageComponent,
@@ -32,5 +28,16 @@ import {ItemComponent} from "./item/item.component";
   ]
 })
 export class SharedModule {
-
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        Auth,
+        GamesService,
+        MoviesService,
+        MusicsService
+      ]
+    };
+  }
 }
+

@@ -7,4 +7,5 @@ import {Auth} from "./shared/services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+  constructor(private auth: Auth){}
 }
