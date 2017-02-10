@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Http, URLSearchParams,RequestOptions} from '@angular/http';
+import {Http, URLSearchParams, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 const api_key = '544ce33d881d9c8b4f234cc65fa42475';
@@ -11,8 +12,6 @@ const api_url = 'https://api.themoviedb.org/3';
 export class MoviesService {
   private genres = [];
   private nowPlaying = [];
-  private updateSource = new BehaviorSubject(0);
-  updateSource$ = this.updateSource.asObservable();
 
   constructor(private _http: Http) {
   }
@@ -74,11 +73,8 @@ export class MoviesService {
       search: params
     });
 
-    this._http.get(api_url + '/discover/movie', options)
-      .map(res => res.json().results)
-      .subscribe(movies=>{
-        this.updateSource.next(movies);
-      });
+    return this._http.get(api_url + '/discover/movie', options)
+      .map(res => res.json().results);
 
 
   }

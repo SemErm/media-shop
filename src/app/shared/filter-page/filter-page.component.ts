@@ -30,16 +30,27 @@ export class FilterPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let filterName = this.route.snapshot.queryParams['filter'];
-    switch (filterName) {
-      case 'movies': {
-        this.subscription = this.moviesService.updateSource$
-          .subscribe(res => {
-            this.items = _.chunk(this.generateMovies(res), 6);
-          });
-        break;
-      }
-    }
+    this.subscription = this.route.queryParams
+      .subscribe(params => {
+        let filterName = params['filter'];
+        let filter: any = {};
+        switch (filterName) {
+          case 'movies': {
 
+            for (let val of Object.keys(params)) {
+              if (val === 'genres') filter['with_genres'] = params[val];
+              if (val === 'dateTo') filter['primary_release_date.lte'] = params[val];
+              if (val === 'dateFrom') filter['primary_release_date.gte'] = params[val];
+            }
+
+           this.moviesService.getMoviesByFilter(filter)
+              .subscribe(res => {
+                this.items = _.chunk(this.generateMovies(res), 6);
+              });
+            break;
+          }
+        }
+
+      });
   }
 }

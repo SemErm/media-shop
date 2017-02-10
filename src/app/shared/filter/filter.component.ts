@@ -15,15 +15,15 @@ export class FilterComponent implements OnInit {
   private filterForm: FormGroup;
   private genres = [];
 
-  constructor(private _gamesService: GamesService,
-              private _moviesService: MoviesService,
+  constructor(private gamesService: GamesService,
+              private moviesService: MoviesService,
               private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this._moviesService.getGenres()
+    this.moviesService.getGenres()
       .subscribe(res => {
         this.genres = res;
       });
@@ -44,13 +44,11 @@ export class FilterComponent implements OnInit {
     let filter: any = {};
     switch (this.nameFilter) {
       case 'movies': {
+        filter['filter'] = this.nameFilter;
         for (let val of Object.keys(this.filterForm.value)) {
-          if (val === 'genres') filter['with_genres'] = this.filterForm.value[val];
-          if (val === 'dateTo') filter['primary_release_date.lte'] = this.filterForm.value[val];
-          if (val === 'dateFrom') filter['primary_release_date.gte'] = this.filterForm.value[val];
+          filter[val] = this.filterForm.value[val];
         }
-        this.router.navigate(['movies/filter'], {queryParams: {filter: this.nameFilter}});
-        this._moviesService.getMoviesByFilter(filter);
+        this.router.navigate(['movies/filter'], {queryParams: filter});
         break;
       }
     }

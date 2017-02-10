@@ -30,7 +30,6 @@ import {MoviesHomePageComponent} from "./category/movies-category/movies-home-pa
     SharedModule
   ],
   providers: [
-    AUTH_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })
