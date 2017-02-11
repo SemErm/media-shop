@@ -1,0 +1,4 @@
+<div *ngIf="auth.authenticated() && auth.userProfile">
+  <h3>Toasts</h3>
+</div>
+<h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>

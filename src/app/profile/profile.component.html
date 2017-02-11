@@ -1,0 +1,13 @@
+<div *ngIf="auth.authenticated() && auth.userProfile">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <img [src]="auth.userProfile.picture_large" alt="" class="profile-img">
+    </div>
+  </div>
+  <div class="col-md-8">
+    <p><strong>Name: </strong> {{auth.userProfile.name}}</p>
+    <p><strong>Email: </strong> {{auth.userProfile.email}}</p>
+    <p><strong>Nickname: </strong> {{auth.userProfile.nickname}}</p>
+  </div>
+</div>
+<h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>

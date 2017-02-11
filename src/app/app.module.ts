@@ -10,6 +10,10 @@ import {MainPageComponent} from "./main-page/main-page.component";
 import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
 import {MovieItemComponent} from "./items/movie-item/movie-item.component";
 import {MoviesHomePageComponent} from "./category/movies-category/movies-home-page.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {ProfileMainPageComponent} from "./profile/main-page.component";
+import {ProfileToastsComponent} from "./profile/toasts.component";
+import {ProfileAddressesComponent} from "./profile/addresses.component";
 
 
 
@@ -19,7 +23,11 @@ import {MoviesHomePageComponent} from "./category/movies-category/movies-home-pa
     MainPageComponent,
     MoviesCategoryComponent,
     MovieItemComponent,
-    MoviesHomePageComponent
+    MoviesHomePageComponent,
+    ProfileComponent,
+    ProfileMainPageComponent,
+    ProfileToastsComponent,
+    ProfileAddressesComponent
   ],
   imports: [
     BrowserModule,
