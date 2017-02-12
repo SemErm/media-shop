@@ -12,8 +12,23 @@ const api_url = 'https://api.themoviedb.org/3';
 export class MoviesService {
   private genres = [];
   private nowPlaying = [];
+  private pathImage = 'https://image.tmdb.org/t/p/w500';
+  private pathNoImage = "assets/no-image.png";
 
-  constructor(private _http: Http) {
+
+  constructor(private http: Http) {
+  }
+
+  generateMovies(movies) {
+    return movies.map(movie => {
+      return {
+        id: movie.id,
+        type: 'movie',
+        name: movie.title,
+        poster: movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage,
+        price: (movie.vote_average * 5.5 + 5).toFixed(2)
+      }
+    });
   }
 
   getNowPlayingMovies() {
@@ -26,7 +41,7 @@ export class MoviesService {
   }
 
   loadNowPlayingMovies() {
-    return this._http.get(api_url + '/movie/now_playing?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(api_url + '/movie/now_playing?api_key=' + api_key + '&language=en-US&page=1')
       .map(res => {
         this.nowPlaying = res.json().results.slice(0, 6);
         return this.nowPlaying;
@@ -43,7 +58,7 @@ export class MoviesService {
   }
 
   loadGenres() {
-    return this._http.get(api_url + '/genre/movie/list?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(api_url + '/genre/movie/list?api_key=' + api_key + '&language=en-US&page=1')
       .map(res => {
         this.genres = res.json().genres;
         return this.genres;
@@ -52,12 +67,12 @@ export class MoviesService {
 
   getMoviesByGenres(id: number) {
     const countMovies = 6;
-    return this._http.get(api_url + '/genre/' + id + '/movies?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(api_url + '/genre/' + id + '/movies?api_key=' + api_key + '&language=en-US&page=1')
       .map(res => res.json().results.slice(0, countMovies));
   }
 
   getMovie(id: number) {
-    return this._http.get(api_url + '/movie/' + id + '?api_key=' + api_key + '&language=en-US')
+    return this.http.get(api_url + '/movie/' + id + '?api_key=' + api_key + '&language=en-US')
       .map(res => res.json());
   }
 
@@ -73,7 +88,7 @@ export class MoviesService {
       search: params
     });
 
-    return this._http.get(api_url + '/discover/movie', options)
+    return this.http.get(api_url + '/discover/movie', options)
       .map(res => res.json().results);
 
 

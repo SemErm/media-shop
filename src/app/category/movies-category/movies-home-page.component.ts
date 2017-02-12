@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {MoviesService} from "../../shared/services/movies.service";
 import {Router} from "@angular/router";
 import * as _ from 'lodash';
@@ -9,13 +9,12 @@ import * as _ from 'lodash';
   templateUrl: 'movies-home-page.component.html'
 })
 
-export class MoviesHomePageComponent{
+export class MoviesHomePageComponent implements OnInit{
   private genres = [];
   private randomGenres = [];
   private nowPlayingMovies = [];
-  private pathImage = 'https://image.tmdb.org/t/p/w500/';
-  constructor(private moviesService: MoviesService,
-              private router: Router) {
+
+  constructor(private moviesService: MoviesService) {
   }
 
   setRandomGenres() {
@@ -28,25 +27,13 @@ export class MoviesHomePageComponent{
       newSectionGenre = tmpGenres[random];
       this.moviesService.getMoviesByGenres(newSectionGenre.id)
         .subscribe(res => {
-          newSectionGenre.movies = this.generateMovies(res);
+          newSectionGenre.movies = this.moviesService.generateMovies(res);
           this.randomGenres.push(newSectionGenre);
           tmpGenres = _.remove(tmpGenres, (item) => {
             return _.last(this.randomGenres) !== item.name;
           });
         });
     }
-  }
-
-  generateMovies(movies) {
-    return movies.map(movie => {
-      return {
-        id: movie.id,
-        type: 'movie',
-        name: movie.title,
-        poster: this.pathImage + movie.poster_path,
-        price: (movie.vote_average * 5.5 + 5).toFixed(2)
-      }
-    });
   }
 
   ngOnInit() {
@@ -57,10 +44,7 @@ export class MoviesHomePageComponent{
       });
 
     this.moviesService.getNowPlayingMovies()
-      .subscribe(movies => this.nowPlayingMovies = this.generateMovies(movies));
+      .subscribe(movies => this.nowPlayingMovies = this.moviesService.generateMovies(movies));
   }
 
-  goToDetail(movie){
-    this.router.navigate(['movies', movie.id]);
-  }
 }

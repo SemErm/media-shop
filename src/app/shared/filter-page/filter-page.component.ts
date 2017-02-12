@@ -10,24 +10,11 @@ import * as _ from 'lodash';
   templateUrl: './filter-page.component.html'
 })
 export class FilterPageComponent implements OnInit {
-  private pathImage = 'https://image.tmdb.org/t/p/w500/';
   private items = [];
   private subscription: Subscription;
 
   constructor(private moviesService: MoviesService,
               private route: ActivatedRoute) {
-  }
-
-  generateMovies(movies) {
-    return movies.map(movie => {
-      return {
-        id: movie.id,
-        type: 'movie',
-        name: movie.title,
-        poster: this.pathImage + movie.poster_path,
-        price: (movie.vote_average * 5.5 + 5).toFixed(2)
-      }
-    });
   }
 
   ngOnInit() {
@@ -46,7 +33,7 @@ export class FilterPageComponent implements OnInit {
 
            this.moviesService.getMoviesByFilter(filter)
               .subscribe(res => {
-                this.items = _.chunk(this.generateMovies(res), 6);
+                this.items = _.chunk(this.moviesService.generateMovies(res), 6);
               });
             break;
           }

@@ -11,31 +11,19 @@ import {MoviesService} from "../shared/services/movies.service";
 export class MainPageComponent implements OnInit {
   private resentlyGames = [];
   private nowPlayingMovies = [];
-  private pathImage = 'https://image.tmdb.org/t/p/w500/';
 
-  constructor(private _gamesService: GamesService,
-              private _moviesService: MoviesService) {
+  constructor(private gamesService: GamesService,
+              private moviesService: MoviesService) {
   }
 
-  generateMovies(movies) {
-    return movies.map(movie => {
-      return {
-        id: movie.id,
-        type: 'movie',
-        name: movie.title,
-        poster: this.pathImage + movie.poster_path,
-        price: (movie.vote_average * 5.5 + 5).toFixed(2)
-      }
-    });
-  }
 
   ngOnInit() {
     /*this.gamesService.getNewGames()
      .subscribe(games => this.resentlyGames = games);*/
 
-    this._moviesService.getNowPlayingMovies()
+    this.moviesService.getNowPlayingMovies()
       .subscribe(movies => {
-        this.nowPlayingMovies = this.generateMovies(movies);
+        this.nowPlayingMovies = this.moviesService.generateMovies(movies);
       });
   }
 }

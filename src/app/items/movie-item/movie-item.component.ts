@@ -10,11 +10,12 @@ import 'rxjs/add/operator/switchMap';
   moduleId: module.id,
   selector: 'movie-item',
   templateUrl: './movie-item.component.html',
-  styleUrls:['./movie-item.component.css']
+  styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent implements OnInit {
   private movie: any;
   private pathImage = 'https://image.tmdb.org/t/p/w500/';
+  private pathNoImage = "assets/no-image.png";
 
   constructor(private moviesService: MoviesService,
               private route: ActivatedRoute,
@@ -22,21 +23,21 @@ export class MovieItemComponent implements OnInit {
   }
 
   generateMovie(movie) {
-      return {
-        id: movie.id,
-        name: movie.title,
-        poster: this.pathImage + movie.poster_path,
-        vote: movie.vote_average,
-        tagline: movie.tagline,
-        release_date: movie.release_date,
-        budget: movie.budget,
-        production_companies: movie.production_companies,
-        production_countries: movie.production_countries,
-        homepage: movie.homepage,
-        genres: movie.genres,
-        overview: movie.overview,
-        price: (movie.vote_average * 5.5).toFixed(2)
-      };
+    return {
+      id: movie.id,
+      name: movie.title,
+      poster: movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage,
+      vote: movie.vote_average,
+      tagline: movie.tagline,
+      release_date: movie.release_date,
+      budget: movie.budget,
+      production_companies: movie.production_companies,
+      production_countries: movie.production_countries,
+      homepage: movie.homepage,
+      genres: movie.genres,
+      overview: movie.overview,
+      price: (movie.vote_average * 5.5 + 5).toFixed(2)
+    };
   }
 
   ngOnInit() {
@@ -48,7 +49,7 @@ export class MovieItemComponent implements OnInit {
       });
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 }

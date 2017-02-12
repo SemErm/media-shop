@@ -1,5 +1,5 @@
 <div class="thumbnail">
-  <img src="{{item.poster}}" alt="{{item.name}}" (click)="goToDetail(item)">
+  <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
   <div class="caption">
     <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
     <p class="text-center">

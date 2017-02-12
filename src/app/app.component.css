@@ -5,3 +5,7 @@
   width: 25px;
   height: 25px;
 }
+.dropdown a{
+  max-height: 50px;
+  overflow: hidden;
+}
