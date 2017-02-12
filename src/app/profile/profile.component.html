@@ -1,16 +1,26 @@
-<div *ngIf="auth.authenticated() && auth.userProfile">
-  <div class="col-md-4">
-    <div class="thumbnail">
-      <img [src]="auth.userProfile.picture" alt="" class="profile-img">
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/personal">Personal</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/toasts">Toasts</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/addresses">Addresses</a></li>
+</ul>
+<div class="row">
+  <div *ngIf="auth.authenticated() && auth.userProfile">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-md-11">
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Name: </strong> {{auth.userProfile.given_name}} {{auth.userProfile.family_name}}</li>
+            <li class="list-group-item"><strong>Nickname: </strong> {{auth.userProfile.nickname}}</li>
+            <li class="list-group-item"><strong>Email: </strong> {{auth.userProfile.email}}</li>
+            <li class="list-group-item"><strong>Telephone: </strong> {{auth.userProfile.telephone}}</li>
+          </ul>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-success btn-lg" routerLink="/profile/edit">Edit</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <p><strong>Name: </strong> {{auth.userProfile.name}}</p>
-    <p><strong>Email: </strong> {{auth.userProfile.email}}</p>
-    <p><strong>Nickname: </strong> {{auth.userProfile.nickname}}</p>
-  </div>
-  <div class="col-md-2">
-    <button class="btn btn-success" routerLink="/profile/edit">Edit</button>
-  </div>
+  <h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>
 </div>
-<h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>
+

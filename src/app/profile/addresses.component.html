@@ -1,4 +1,15 @@
-<div *ngIf="auth.authenticated() && auth.userProfile">
-  <h3>Addresses</h3>
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/personal">Personal</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/toasts">Toasts</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/profile/addresses">Addresses</a></li>
+</ul>
+<div class="row">
+  <div *ngIf="auth.authenticated() && auth.userProfile">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Addresses</h3>
+      </div>
+    </div>
+  </div>
+  <h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>
 </div>
-<h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>

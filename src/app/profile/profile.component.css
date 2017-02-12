@@ -1,0 +1,9 @@
+.list-group-item{
+  border-left: none;
+  border-right: none;
+  padding: 20px 0;
+  font-size: 1em;
+}
+.list-group-item:first-of-type{
+  border-top: none;
+}

@@ -9,3 +9,15 @@
   max-height: 50px;
   overflow: hidden;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.footer {
+  flex: 0 0 auto;
+  padding: 1rem;
+  border-top: solid #e7e7e7 1px;
+  background-color: #f8f8f8;
+  text-align: center;
+}

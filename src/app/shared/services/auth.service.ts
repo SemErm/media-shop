@@ -27,14 +27,13 @@ export class Auth {
           return;
         }
 
-        this.userProfile = profile;
-
-        if (!_.find(this.profiles, (item) => item.clientID == profile.clientID)) {
+        if (!_.find(this.profiles, (item) => item.clientID === profile.clientID)) {
           this.profiles.push(profile);
+          this.userProfile = profile;
+          localStorage.setItem('profiles', JSON.stringify(this.profiles));
+        } else {
+          this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
         }
-
-        localStorage.setItem('profiles', JSON.stringify(this.profiles));
-
       });
     });
   }
@@ -46,8 +45,15 @@ export class Auth {
           alert(error);
           return;
         }
-        this.userProfile = profile;
+        this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
       })
+    }
+  }
+
+  updateProfile(profile: any) {
+    if(_.remove(this.profiles, (item) => item.clientID === profile.clientID)) {
+      this.profiles.push(profile);
+      localStorage.setItem('profiles', JSON.stringify(this.profiles));
     }
 
   }

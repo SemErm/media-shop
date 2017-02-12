@@ -55,4 +55,9 @@ export class FilterComponent implements OnInit {
 
   }
 
+  onReset(){
+    this.filterForm.reset();
+    this.router.navigate(['movies']);
+  }
+
 }
