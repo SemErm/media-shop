@@ -10,6 +10,7 @@ import {ProfileMainPageComponent} from './profile/main-page.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ProfileToastsComponent} from './profile/toasts.component';
 import {ProfileAddressesComponent} from './profile/addresses.component';
+import {ProfileEditComponent} from './profile/edit.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: '', redirectTo: 'personal', pathMatch: 'full'},
     {path: 'personal', component: ProfileComponent},
     {path: 'toasts', component: ProfileToastsComponent},
-    {path: 'addresses', component: ProfileAddressesComponent}
+    {path: 'addresses', component: ProfileAddressesComponent},
+    {path: 'edit', component: ProfileEditComponent}
   ]
   }
 ];

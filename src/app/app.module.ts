@@ -14,6 +14,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ProfileMainPageComponent} from "./profile/main-page.component";
 import {ProfileToastsComponent} from "./profile/toasts.component";
 import {ProfileAddressesComponent} from "./profile/addresses.component";
+import {ProfileEditComponent} from "./profile/edit.component";
 
 
 
@@ -27,7 +28,8 @@ import {ProfileAddressesComponent} from "./profile/addresses.component";
     ProfileComponent,
     ProfileMainPageComponent,
     ProfileToastsComponent,
-    ProfileAddressesComponent
+    ProfileAddressesComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ export class ProfileComponent implements OnInit{
     constructor(private auth: Auth){}
 
     ngOnInit(){
-      console.log(this.auth.userProfile);
+      console.log(this.auth.profiles);
     }
+
 }

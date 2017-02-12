@@ -1,3 +1,7 @@
 .nav li a{
   cursor: pointer;
 }
+.img-circle{
+  width: 25px;
+  height: 25px;
+}
