@@ -20,9 +20,11 @@ export class ItemComponent {
   }
 
   addItem(item) {
-    this.basketService.addItem(item);
-    if (this.auth.userProfile.toasts.info)
-      this.toasterService.pop('info', 'Add', 'id-' + item.id + ' ' + item.type);
+    if (this.auth.authenticated()) {
+      this.basketService.addItem(item);
+      if (this.auth.userProfile.toasts.info)
+        this.toasterService.pop('info', 'Add', 'id-' + item.id + ' ' + item.type);
+    }
   }
 
   goToDetail(item) {

@@ -1,4 +1,4 @@
-import {Injectable}      from '@angular/core';
+import {Injectable, EventEmitter}      from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt';
 import * as _ from 'lodash';
 import {BasketService} from "./basket.service";
@@ -14,6 +14,7 @@ export class Auth {
 
   userProfile: any;
   profiles = [];
+  auth = new EventEmitter();
 
   constructor(private basketService: BasketService,
               private router: Router,
@@ -62,13 +63,13 @@ export class Auth {
             return item.clientID === profile.clientID
           }))
           this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
+        this.auth.emit(true);
       })
     }
   }
 
   addAdreess(address) {
     this.userProfile.addresses.push(address);
-    console.log(address);
     this.updateProfile(this.userProfile);
   }
 

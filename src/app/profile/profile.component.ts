@@ -8,13 +8,9 @@ import {BasketService} from "../shared/services/basket.service";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   constructor(private auth: Auth,
               private basket: BasketService) {
   }
 
-  ngOnInit() {
-    console.log(this.auth.userProfile);
-    console.log(this.basket.basketsUsers);
-  }
 }

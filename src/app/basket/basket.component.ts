@@ -22,7 +22,13 @@ export class BasketComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.basketsItems = _.chunk(this.basketService.getItems(), 6);
+    this.auth.auth
+      .subscribe(() => {
+        this.basketsItems = _.chunk(this.basketService.getItems(), 6);
+      });
+    if(this.auth.userProfile){
+      this.basketsItems = _.chunk(this.basketService.getItems(), 6);
+    }
   }
 
   remove(item) {
