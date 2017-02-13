@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GamesService} from "../shared/services/games.service";
 import {MoviesService} from "../shared/services/movies.service";
+import {ToasterService} from 'angular2-toaster';
 
 
 @Component({

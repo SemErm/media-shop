@@ -24,7 +24,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li routerLinkActive="active" *ngIf="auth.authenticated() && auth.userProfile"><a routerLink="/basket">
             <span class="glyphicon glyphicon-shopping-cart"></span>
-            Basket <span class="badge" >{{basket.countItems()}}</span></a></li>
+            Basket <span class="badge">{{basket.countItems()}}</span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">{{(auth.authenticated() && auth.userProfile)? auth.userProfile.nickname :
@@ -43,6 +43,7 @@
   </nav>
 </header>
 <div class="container">
+  <toaster-container></toaster-container>
   <router-outlet></router-outlet>
 </div>
 

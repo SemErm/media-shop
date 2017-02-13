@@ -33,7 +33,13 @@ export class Auth {
         if (!_.find(this.profiles, (item) => item.clientID === profile.clientID)) {
           this.profiles.push(profile);
           this.userProfile = profile;
+          this.userProfile['toasts'] = {
+            info: true,
+            warning: true,
+            success: true
+          };
           this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
+
           localStorage.setItem('profiles', JSON.stringify(this.profiles));
         } else {
           this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
@@ -65,7 +71,6 @@ export class Auth {
       this.profiles.push(profile);
       localStorage.setItem('profiles', JSON.stringify(this.profiles));
     }
-
   }
 
   public login() {

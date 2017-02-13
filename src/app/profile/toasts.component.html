@@ -7,7 +7,21 @@
   <div *ngIf="auth.authenticated() && auth.userProfile">
     <div class="panel panel-default">
       <div class="panel-body">
-          <h3>Toasts</h3>
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <label for="delete-toasts">Toasts add item:</label>
+            <input type="checkbox" id="delete-toasts" [(ngModel)]="auth.userProfile.toasts.info">
+          </li>
+          <li class="list-group-item">
+            <label for="warning-toasts">Toasts delete item:</label>
+            <input type="checkbox" id="warning-toasts" [(ngModel)]="auth.userProfile.toasts.warning">
+          </li>
+          <li class="list-group-item">
+            <label for="edit-toasts">Toasts edit:</label>
+            <input type="checkbox" id="edit-toasts" [(ngModel)]="auth.userProfile.toasts.success">
+          </li>
+        </ul>
       </div>
     </div>
   </div>

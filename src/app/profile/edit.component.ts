@@ -4,6 +4,7 @@ import {Auth} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 import "rxjs/add/operator/map";
 import {Location} from "@angular/common";
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +18,8 @@ export class ProfileEditComponent implements OnInit {
 
   constructor(private auth: Auth,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -28,6 +30,8 @@ export class ProfileEditComponent implements OnInit {
 
   onSubmit() {
     this.auth.updateProfile(this.user);
+    if (this.auth.userProfile.toats.success)
+      this.toasterService.pop('success', 'Edit profile', '');
     this.router.navigate(['/profile']);
   }
 

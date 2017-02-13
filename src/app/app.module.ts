@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {ToasterModule} from 'angular2-toaster';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -38,7 +39,8 @@ import {BasketComponent} from "./basket/basket.component";
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    ToasterModule
   ],
   bootstrap: [AppComponent]
 })

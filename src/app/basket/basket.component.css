@@ -3,11 +3,14 @@
   height: 45px;
   overflow: hidden;
 }
-
+.col-sm-4, .col-md-2{
+  position: relative;
+}
 .remove-item {
   position: absolute;
   cursor: pointer;
   bottom: 25px;
-  right: 15px;
+  right: 10px;
+  top: auto;
   font-size: large;
 }
