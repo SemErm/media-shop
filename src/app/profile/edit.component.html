@@ -4,7 +4,7 @@
     <h3 class="panel-title">Edit profile</h3>
   </div>
   <div class="panel-body ">
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <div class="form-group">
         <label for="given_name">Name:</label>
         <input type="text" class="form-control" [(ngModel)]="user.given_name" placeholder="Enter name..."
@@ -30,7 +30,7 @@
         <input type="tel" class="form-control" [(ngModel)]="user.telephone" name="telephone"
                placeholder="Enter telephone..." id="telephone">
       </div>
-      <button type="submit" class="btn btn-success btn-lg">Save</button>
+      <button class="btn btn-success btn-lg" (click)="onSubmit()">Save</button>
       <button class="btn btn-danger btn-lg" (click)="goBack()">Cancel</button>
     </form>
   </div>

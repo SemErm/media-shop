@@ -3,6 +3,7 @@ import {tokenNotExpired} from 'angular2-jwt';
 import * as _ from 'lodash';
 import {BasketService} from "./basket.service";
 import {Router} from "@angular/router";
+import {ToasterService} from 'angular2-toaster';
 
 declare let Auth0Lock: any;
 
@@ -15,7 +16,8 @@ export class Auth {
   profiles = [];
 
   constructor(private basketService: BasketService,
-              private router: Router) {
+              private router: Router,
+              private toasterService: ToasterService) {
 
     if (localStorage.getItem('profiles')) {
       this.profiles = JSON.parse(localStorage.getItem('profiles'));
@@ -39,7 +41,7 @@ export class Auth {
             success: true
           };
           this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
-
+          this.userProfile['addresses'] = [];
           localStorage.setItem('profiles', JSON.stringify(this.profiles));
         } else {
           this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
@@ -62,6 +64,12 @@ export class Auth {
           this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
       })
     }
+  }
+
+  addAdreess(address) {
+    this.userProfile.addresses.push(address);
+    console.log(address);
+    this.updateProfile(this.userProfile);
   }
 
   updateProfile(profile) {

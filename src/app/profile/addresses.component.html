@@ -7,9 +7,21 @@
   <div *ngIf="auth.authenticated() && auth.userProfile">
     <div class="panel panel-default">
       <div class="panel-body">
-        <h3>Addresses</h3>
+        <template ngbModalContainer></template>
+        <div class="row" *ngIf="addressesUser">
+          <div class="col-md-4" *ngFor="let address of addressesUser">
+            <ul class="list-group">
+              <li class="list-group-item">{{address.country}}</li>
+              <li class="list-group-item">{{address.region}}</li>
+              <li class="list-group-item">{{address.city}}</li>
+              <li class="list-group-item">{{address.street}}</li>
+            </ul>
+          </div>
+        </div>
+        <button class="btn btn-primary" (click)="open()">Add address</button>
       </div>
     </div>
   </div>
   <h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>
 </div>
+

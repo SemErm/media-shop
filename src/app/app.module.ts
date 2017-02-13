@@ -17,6 +17,8 @@ import {ProfileToastsComponent} from "./profile/toasts.component";
 import {ProfileAddressesComponent} from "./profile/addresses.component";
 import {ProfileEditComponent} from "./profile/edit.component";
 import {BasketComponent} from "./basket/basket.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {ModalWindowComponent} from "./shared/modal-window.component/modal-window.component";
 
 
 
@@ -32,7 +34,8 @@ import {BasketComponent} from "./basket/basket.component";
     ProfileToastsComponent,
     ProfileAddressesComponent,
     ProfileEditComponent,
-    BasketComponent
+    BasketComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +43,10 @@ import {BasketComponent} from "./basket/basket.component";
     HttpModule,
     AppRoutingModule,
     SharedModule.forRoot(),
-    ToasterModule
+    ToasterModule,
+    NgbModule.forRoot()
   ],
+  entryComponents:[ModalWindowComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

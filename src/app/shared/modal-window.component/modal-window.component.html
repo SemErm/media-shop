@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add address</h4>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" class="form-control" placeholder="Country..." id="country" [(ngModel)]="address.country"
+             name="country">
+    </div>
+    <div class="form-group">
+      <label for="region">Region:</label>
+      <input type="text" class="form-control" placeholder="Region..." id="region" [(ngModel)]="address.region"
+             name="region">
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" class="form-control" placeholder="City..." id="city" [(ngModel)]="address.city" name="city">
+    </div>
+    <div class="form-group">
+      <label for="country">Street:</label>
+      <input type="text" class="form-control" placeholder="Street address..." id="street" [(ngModel)]="address.street"
+             name="city">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success" (click)="addAddress()">Add address</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+</div>

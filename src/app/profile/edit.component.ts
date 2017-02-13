@@ -30,12 +30,14 @@ export class ProfileEditComponent implements OnInit {
 
   onSubmit() {
     this.auth.updateProfile(this.user);
-    if (this.auth.userProfile.toats.success)
+    if (this.auth.userProfile.toasts.success)
       this.toasterService.pop('success', 'Edit profile', '');
     this.router.navigate(['/profile']);
   }
 
   goBack() {
+    if (this.auth.userProfile.toasts.success)
+      this.toasterService.pop('error', 'Cancel edit', '');
     this.location.back();
   }
 
