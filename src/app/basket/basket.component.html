@@ -1,0 +1,21 @@
+<h1>Basket</h1>
+<hr>
+<div *ngIf="basketsItems">
+  <div class="row" *ngFor="let sectionBasket of basketsItems">
+    <div class="col-sm-4 col-md-2" *ngFor="let item of sectionBasket">
+      <div class="thumbnail">
+        <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
+        <div class="glyphicon glyphicon-trash remove-item" (click)="remove(item)"></div>
+        <div class="caption">
+          <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
+          <p class="text-center">
+            <a class="btn btn-primary" role="button" > $ {{item.price}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,6 +1,8 @@
 import {Injectable}      from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt';
 import * as _ from 'lodash';
+import {BasketService} from "./basket.service";
+import {Router} from "@angular/router";
 
 declare let Auth0Lock: any;
 
@@ -12,7 +14,8 @@ export class Auth {
   userProfile: any;
   profiles = [];
 
-  constructor() {
+  constructor(private basketService: BasketService,
+              private router: Router) {
 
     if (localStorage.getItem('profiles')) {
       this.profiles = JSON.parse(localStorage.getItem('profiles'));
@@ -30,9 +33,11 @@ export class Auth {
         if (!_.find(this.profiles, (item) => item.clientID === profile.clientID)) {
           this.profiles.push(profile);
           this.userProfile = profile;
+          this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
           localStorage.setItem('profiles', JSON.stringify(this.profiles));
         } else {
           this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
+          this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
         }
       });
     });
@@ -45,13 +50,18 @@ export class Auth {
           alert(error);
           return;
         }
-        this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);
+        if (this.userProfile = _.find(this.profiles, (item) => {
+            return item.clientID === profile.clientID
+          }))
+          this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
       })
     }
   }
 
-  updateProfile(profile: any) {
-    if(_.remove(this.profiles, (item) => item.clientID === profile.clientID)) {
+  updateProfile(profile) {
+    if (this.profiles = _.remove(this.profiles, (item) => {
+        return item.clientID !== profile.clientID
+      })) {
       this.profiles.push(profile);
       localStorage.setItem('profiles', JSON.stringify(this.profiles));
     }
@@ -68,6 +78,8 @@ export class Auth {
 
   public logout() {
     localStorage.removeItem('id_token');
+    this.router.navigate(['/']);
     this.userProfile = undefined;
+    this.basketService.currentBasket = undefined;
   }
 }

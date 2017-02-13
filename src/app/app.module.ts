@@ -15,6 +15,7 @@ import {ProfileMainPageComponent} from "./profile/main-page.component";
 import {ProfileToastsComponent} from "./profile/toasts.component";
 import {ProfileAddressesComponent} from "./profile/addresses.component";
 import {ProfileEditComponent} from "./profile/edit.component";
+import {BasketComponent} from "./basket/basket.component";
 
 
 
@@ -29,7 +30,8 @@ import {ProfileEditComponent} from "./profile/edit.component";
     ProfileMainPageComponent,
     ProfileToastsComponent,
     ProfileAddressesComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

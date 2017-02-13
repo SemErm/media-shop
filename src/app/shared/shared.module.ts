@@ -9,6 +9,7 @@ import {FilterComponent} from "./filter/filter.component";
 import {FilterPageComponent} from "./filter-page/filter-page.component";
 import {ItemComponent} from "./item/item.component";
 import {Auth} from "./services/auth.service";
+import {BasketService} from "./services/basket.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ export class SharedModule {
         Auth,
         GamesService,
         MoviesService,
-        MusicsService
+        MusicsService,
+        BasketService
       ]
     };
   }

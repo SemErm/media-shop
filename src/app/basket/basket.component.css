@@ -1,0 +1,13 @@
+.thumbnail h4 {
+  font-size: 20px;
+  height: 45px;
+  overflow: hidden;
+}
+
+.remove-item {
+  position: absolute;
+  cursor: pointer;
+  bottom: 25px;
+  right: 15px;
+  font-size: large;
+}

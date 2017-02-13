@@ -11,6 +11,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {ProfileToastsComponent} from './profile/toasts.component';
 import {ProfileAddressesComponent} from './profile/addresses.component';
 import {ProfileEditComponent} from './profile/edit.component';
+import {BasketComponent} from "./basket/basket.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path: 'addresses', component: ProfileAddressesComponent},
     {path: 'edit', component: ProfileEditComponent}
   ]
-  }
+  },
+  {path: 'basket', component: BasketComponent}
 ];
 
 @NgModule({

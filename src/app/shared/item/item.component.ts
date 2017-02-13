@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
+import {BasketService} from "../services/basket.service";
 @Component({
   moduleId: module.id,
   selector: 'app-item',
@@ -10,7 +11,8 @@ import {Router} from "@angular/router";
 export class ItemComponent {
   @Input() item;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private cartService: BasketService) {
   }
 
   goToDetail(item) {
@@ -20,6 +22,5 @@ export class ItemComponent {
         break;
       }
     }
-
   }
 }
