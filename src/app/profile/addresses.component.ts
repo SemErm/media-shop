@@ -24,4 +24,9 @@ export class ProfileAddressesComponent implements OnInit {
     this.modalService.open(ModalWindowComponent);
   }
 
+  removeAddress(item) {
+    this.auth.removeAddress(item);
+    this.addressesUser = this.auth.userProfile.addresses;
+  }
+
 }

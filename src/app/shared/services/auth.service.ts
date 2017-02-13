@@ -72,6 +72,13 @@ export class Auth {
     this.updateProfile(this.userProfile);
   }
 
+  removeAddress(address) {
+    this.userProfile.addresses = _.remove(this.userProfile.addresses, (item) => {
+      return item !== address;
+    });
+    this.updateProfile(this.userProfile);
+  }
+
   updateProfile(profile) {
     if (this.profiles = _.remove(this.profiles, (item) => {
         return item.clientID !== profile.clientID
