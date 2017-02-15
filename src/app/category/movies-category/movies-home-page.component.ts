@@ -27,7 +27,9 @@ export class MoviesHomePageComponent implements OnInit{
       newSectionGenre = tmpGenres[random];
       this.moviesService.getMoviesByGenres(newSectionGenre.id)
         .subscribe(res => {
-          newSectionGenre.movies = this.moviesService.generateMovies(res);
+          newSectionGenre.movies = res.map(movie=>{
+            return this.moviesService.generateMovie(movie)
+          });
           this.randomGenres.push(newSectionGenre);
           tmpGenres = _.remove(tmpGenres, (item) => {
             return _.last(this.randomGenres) !== item.name;
@@ -44,7 +46,10 @@ export class MoviesHomePageComponent implements OnInit{
       });
 
     this.moviesService.getNowPlayingMovies()
-      .subscribe(movies => this.nowPlayingMovies = this.moviesService.generateMovies(movies));
+      .subscribe(movies => this.nowPlayingMovies = movies.map(movie=>{
+        return this.moviesService.generateMovie(movie)
+      })
+    );
   }
 
 }

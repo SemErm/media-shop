@@ -1,8 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {MoviesService} from "../services/movies.service";
 import {ActivatedRoute} from "@angular/router";
-import {Subscription} from 'rxjs/Subscription';
-import * as _ from 'lodash';
+import {Subscription} from "rxjs/Subscription";
+import * as _ from "lodash";
+import "rxjs/add/operator/map";
+import {Product} from "../../product/product";
 
 @Component({
   moduleId: module.id,
@@ -10,7 +12,7 @@ import * as _ from 'lodash';
   templateUrl: './filter-page.component.html'
 })
 export class FilterPageComponent implements OnInit {
-  private items = [];
+  private items: Product[] = [];
   private subscription: Subscription;
 
   constructor(private moviesService: MoviesService,
@@ -31,9 +33,11 @@ export class FilterPageComponent implements OnInit {
               if (val === 'dateFrom') filter['primary_release_date.gte'] = params[val];
             }
 
-           this.moviesService.getMoviesByFilter(filter)
+            this.moviesService.getMoviesByFilter(filter)
               .subscribe(res => {
-                this.items = _.chunk(this.moviesService.generateMovies(res), 6);
+                this.items = _.chunk(res.map(movie => {
+                  return this.moviesService.generateMovie(movie)
+                }), 6)
               });
             break;
           }

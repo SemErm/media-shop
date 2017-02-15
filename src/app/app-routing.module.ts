@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {MainPageComponent}   from './main-page/main-page.component';
 import {MoviesCategoryComponent} from './category/movies-category/movies-category.component';
-import {MovieItemComponent} from './items/movie-item/movie-item.component';
+import {ProductComponent} from './product/product.component';
 import {FilterPageComponent} from './shared/filter-page/filter-page.component';
 import {MoviesHomePageComponent} from './category/movies-category/movies-home-page.component';
 import {ProfileMainPageComponent} from './profile/main-page.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
     {path: 'filter', component: FilterPageComponent}
   ]
   },
-  {path: 'movies/:id', component: MovieItemComponent},
+  {path: 'product', component: ProductComponent},
   {
     path: 'profile', component: ProfileMainPageComponent, children: [
     {path: '', redirectTo: 'personal', pathMatch: 'full'},

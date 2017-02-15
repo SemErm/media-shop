@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Http, URLSearchParams, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
+import {Injectable} from "@angular/core";
+import {Http, URLSearchParams, RequestOptions} from "@angular/http";
+import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
-import {Subject} from 'rxjs/Subject';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Product} from "../../product/product";
 
 const api_key = '544ce33d881d9c8b4f234cc65fa42475';
 const api_url = 'https://api.themoviedb.org/3';
@@ -19,16 +18,23 @@ export class MoviesService {
   constructor(private http: Http) {
   }
 
-  generateMovies(movies) {
-    return movies.map(movie => {
-      return {
-        id: movie.id,
-        type: 'movie',
-        name: movie.title,
-        poster: movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage,
-        price: (movie.vote_average * 5.5 + 5).toFixed(2)
-      }
-    });
+  generateMovie(movie) {
+    let newMovie = new Product();
+    newMovie.id = movie.id;
+    newMovie.type = 'movie';
+    newMovie.name = movie.title;
+    newMovie.poster = movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage;
+    newMovie.price = (movie.vote_average * 5.5 + 5).toFixed(2);
+    newMovie.homepage = movie.homepage;
+    newMovie.vote = movie.vote_average;
+    newMovie.tagline = movie.tagline;
+    newMovie.release_date = movie.release_date;
+    newMovie.budget = movie.budget;
+    newMovie.production_companies = movie.production_companies;
+    newMovie.production_countries = movie.production_countries;
+    newMovie.genres = movie.genres;
+    newMovie.overview = movie.overview;
+    return newMovie;
   }
 
   getNowPlayingMovies() {

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {GamesService} from "../shared/services/games.service";
 import {MoviesService} from "../shared/services/movies.service";
-import {ToasterService} from 'angular2-toaster';
+import 'rxjs/add/operator/map'
+import {Product} from "../product/product";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {ToasterService} from 'angular2-toaster';
 })
 export class MainPageComponent implements OnInit {
   private resentlyGames = [];
-  private nowPlayingMovies = [];
+  private nowPlayingMovies: Product[] = [];
 
   constructor(private gamesService: GamesService,
               private moviesService: MoviesService) {
@@ -24,7 +25,9 @@ export class MainPageComponent implements OnInit {
 
     this.moviesService.getNowPlayingMovies()
       .subscribe(movies => {
-        this.nowPlayingMovies = this.moviesService.generateMovies(movies);
+        this.nowPlayingMovies = movies.map(movie=>{
+          return this.moviesService.generateMovie(movie)
+        });
       });
   }
 }

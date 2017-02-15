@@ -1,0 +1,43 @@
+<div class="back previous">
+  <span (click)="goBack()">Back</span>
+</div>
+<div class="panel panel-primary" *ngIf="product">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 class="panel-title">{{product.name}}</h3>
+      </div>
+      <div class="col-md-8">
+        <h3 class="panel-title">Tagline: {{product.tagline}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="img-thumbnail" [src]="product.poster">
+        <div class="vote">
+          {{product.vote}}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Release date: </strong>{{product.release_date}}</li>
+          <li class="list-group-item"><strong>Budget: </strong>{{product.budget}}$</li>
+          <li class="list-group-item"><strong>Production companies: </strong><span
+            *ngFor="let comp of product.production_companies">"{{comp.name}}" </span></li>
+          <li class="list-group-item"><strong>Production countries: </strong><span
+            *ngFor="let count of product.production_countries">"{{count.name}}" </span></li>
+          <li class="list-group-item"><strong>Homepage: </strong><a href="{{product.homepage}}" target="_blank">{{product.homepage}}</a>
+          </li>
+          <li class="list-group-item"><strong>Genres: </strong><span
+            *ngFor="let genre of product.genres">"{{genre.name}}" </span></li>
+          <li class="list-group-item"><strong>Overview: </strong>{{product.overview}}</li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary top-right price" (click)="basket.addItem(product)">Add <span class="glyphicon glyphicon-shopping-cart"></span> $ {{product.price}}</button>
+      </div>
+    </div>
+  </div>
+</div>

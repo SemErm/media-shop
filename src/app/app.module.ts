@@ -9,7 +9,6 @@ import {AppComponent} from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
-import {MovieItemComponent} from "./items/movie-item/movie-item.component";
 import {MoviesHomePageComponent} from "./category/movies-category/movies-home-page.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileMainPageComponent} from "./profile/main-page.component";
@@ -19,6 +18,7 @@ import {ProfileEditComponent} from "./profile/edit.component";
 import {BasketComponent} from "./basket/basket.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ModalWindowComponent} from "./shared/modal-window.component/modal-window.component";
+import {ProductComponent} from "./product/product.component";
 
 
 
@@ -27,7 +27,6 @@ import {ModalWindowComponent} from "./shared/modal-window.component/modal-window
     AppComponent,
     MainPageComponent,
     MoviesCategoryComponent,
-    MovieItemComponent,
     MoviesHomePageComponent,
     ProfileComponent,
     ProfileMainPageComponent,
@@ -35,7 +34,8 @@ import {ModalWindowComponent} from "./shared/modal-window.component/modal-window
     ProfileAddressesComponent,
     ProfileEditComponent,
     BasketComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
 import {BasketService} from "../services/basket.service";
-import {ToasterService} from 'angular2-toaster';
+import {ToasterService} from "angular2-toaster";
 import {Auth} from "../services/auth.service";
 @Component({
   moduleId: module.id,
@@ -30,7 +30,7 @@ export class ItemComponent {
   goToDetail(item) {
     switch (item.type) {
       case 'movie': {
-        this.router.navigate(['movies', item.id]);
+        this.router.navigate(['product'], {queryParams: {'type': item.type, id: item.id}});
         break;
       }
     }

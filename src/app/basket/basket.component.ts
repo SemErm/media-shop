@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {BasketService} from "../shared/services/basket.service";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 import {Router} from "@angular/router";
 import {ToasterService} from "angular2-toaster";
 import {Auth} from "../shared/services/auth.service";
@@ -13,7 +13,7 @@ import {Auth} from "../shared/services/auth.service";
 })
 
 export class BasketComponent implements OnInit {
-  private basketsItems;
+  private basketsItems = [];
 
   constructor(private basketService: BasketService,
               private router: Router,
@@ -26,7 +26,7 @@ export class BasketComponent implements OnInit {
       .subscribe(() => {
         this.basketsItems = _.chunk(this.basketService.getItems(), 6);
       });
-    if(this.auth.userProfile){
+    if (this.auth.userProfile) {
       this.basketsItems = _.chunk(this.basketService.getItems(), 6);
     }
   }
