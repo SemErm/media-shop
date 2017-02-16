@@ -13,4 +13,6 @@ export class Product {
   public tagline?: string;
   public budget?: number;
   public overview?: string;
+  public label?:string;
+  public artists?:string;
 }

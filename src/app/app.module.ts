@@ -19,6 +19,8 @@ import {BasketComponent} from "./basket/basket.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ModalWindowComponent} from "./shared/modal-window.component/modal-window.component";
 import {ProductComponent} from "./product/product.component";
+import {MusicsCategoryComponent} from "./category/musics-category/musics-category.component";
+import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";
 
 
 
@@ -28,6 +30,8 @@ import {ProductComponent} from "./product/product.component";
     MainPageComponent,
     MoviesCategoryComponent,
     MoviesHomePageComponent,
+    MusicsCategoryComponent,
+    MusicsHomePageComponent,
     ProfileComponent,
     ProfileMainPageComponent,
     ProfileToastsComponent,

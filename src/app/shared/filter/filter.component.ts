@@ -1,8 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 import {GamesService} from "../services/games.service";
 import {MoviesService} from "../services/movies.service";
 import {FormBuilder, FormGroup, FormControl} from "@angular/forms";
 import {Router, ActivatedRoute} from "@angular/router";
+import {MusicsService} from "../services/musics.service";
 
 
 @Component({
@@ -17,19 +18,28 @@ export class FilterComponent implements OnInit {
 
   constructor(private gamesService: GamesService,
               private moviesService: MoviesService,
+              private musicsService: MusicsService,
               private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.moviesService.getGenres()
-      .subscribe(res => {
-        this.genres = res;
-      });
-
     switch (this.nameFilter) {
       case 'movies': {
+        this.moviesService.getGenres()
+          .subscribe(res => {
+            this.genres = res;
+          });
+        this.filterForm = this.fb.group({
+          genres: new FormControl(),
+          dateTo: new FormControl(),
+          dateFrom: new FormControl()
+        });
+        break;
+      }
+      case 'musics': {
+        this.genres = this.musicsService.genres;
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateTo: new FormControl(),
@@ -55,9 +65,20 @@ export class FilterComponent implements OnInit {
 
   }
 
-  onReset(){
+  onReset() {
     this.filterForm.reset();
-    this.router.navigate(['movies']);
+
+    switch (this.nameFilter) {
+      case 'movies': {
+        this.router.navigate(['movies']);
+        break;
+      }
+      case 'music': {
+        this.router.navigate(['musics']);
+        break;
+      }
+    }
+
   }
 
 }

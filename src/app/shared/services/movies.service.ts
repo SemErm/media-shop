@@ -47,7 +47,7 @@ export class MoviesService {
   }
 
   loadNowPlayingMovies() {
-    return this.http.get(api_url + '/movie/now_playing?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(`${api_url}/movie/now_playing?api_key=${api_key}&language=en-US&page=1`)
       .map(res => {
         this.nowPlaying = res.json().results.slice(0, 6);
         return this.nowPlaying;
@@ -64,7 +64,7 @@ export class MoviesService {
   }
 
   loadGenres() {
-    return this.http.get(api_url + '/genre/movie/list?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(`${api_url}/genre/movie/list?api_key=${api_key}&language=en-US&page=1`)
       .map(res => {
         this.genres = res.json().genres;
         return this.genres;
@@ -73,12 +73,12 @@ export class MoviesService {
 
   getMoviesByGenres(id: number) {
     const countMovies = 6;
-    return this.http.get(api_url + '/genre/' + id + '/movies?api_key=' + api_key + '&language=en-US&page=1')
+    return this.http.get(`${api_url}/genre/${id}/movies?api_key=${api_key}&language=en-US&page=1`)
       .map(res => res.json().results.slice(0, countMovies));
   }
 
   getMovie(id: number) {
-    return this.http.get(api_url + '/movie/' + id + '?api_key=' + api_key + '&language=en-US')
+    return this.http.get(`${api_url}/movie/${id}?api_key=${api_key}&language=en-US`)
       .map(res => res.json());
   }
 
@@ -94,7 +94,7 @@ export class MoviesService {
       search: params
     });
 
-    return this.http.get(api_url + '/discover/movie', options)
+    return this.http.get(`${api_url}/discover/movie`, options)
       .map(res => res.json().results);
 
 

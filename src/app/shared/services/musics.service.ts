@@ -1,32 +1,104 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map';
-
-const api_key = 'Bearer BQD3Ty6f28uKiewdms9SUIw9wx0ilAQ0NLRb_gnIX_VwHsu5lJ';
-const api_url = 'https://api.spotify.com/v1';
-const headers = new Headers({
-  "Authorization": api_key
-});
+import {Injectable} from "@angular/core";
+import {Http, RequestOptions, URLSearchParams} from "@angular/http";
+import "rxjs/add/operator/map";
+import {Observable} from "rxjs";
+import {Product} from "../../product/product";
 @Injectable()
 export class MusicsService {
+  private api_url = 'https://api.spotify.com/v1/';
+  private newReleases = [];
+  private pathNoImage = "assets/no-image.png";
+  private genresMusic = [
+    'alternative metal',
+    'hard rock',
+    'metal',
+    'rock',
+    'speed metal',
+    'thrash metal',
+    'album rock',
+    'blues-rock',
+    'classic rock',
+    'mellow gold',
+    'metal',
+    'rock',
+    'soft rock',
+    'britpop',
+    'indie rock',
+    'permanent wave',
+    'pop rock',
+    'electronic',
+    'madchester',
+    'neo mellow',
+    'neo-psychedelic',
+    'new wave',
+    'synthpop',
+    'dance rock',
+    'uk post-punk',
+    'abstracto',
+    'aussietronica',
+    'deep discofox',
+    'destroy techno',
+    'footwork',
+    'freak folk'
+  ];
 
-  constructor(private _http: Http) {
+  get genres() {
+    return Array.from(this.genresMusic);
   }
 
-  connect(){
-    return this._http.get('https://accounts.spotify.com/authorize?client_id=2d40549cb60241aaa79db1c03c2c4c8c&response_type=code&redirect_uri=http://localhost:4200')
-      .map(res=>res.json());
+  constructor(private http: Http) {
   }
+
+  generateMusic(music) {
+    let newMusic = new Product();
+    newMusic.id = music.id;
+    newMusic.type = 'music';
+    newMusic.name = music.name;
+    newMusic.homepage = music.external_urls.spotify;
+    newMusic.poster = music.images[1] ? music.images[0].url : this.pathNoImage;
+    newMusic.price = (5.55).toFixed(2);
+    if (music.genres) newMusic.genres = music.genres;
+    if (music.label) newMusic.label = music.label;
+    if (music.release_date) newMusic.release_date = music.release_date;
+    if (music.artists) newMusic.artists = music.artists.map(artist => artist.name);
+    if (music.popularity) newMusic.vote = music.popularity;
+    return newMusic;
+  }
+
   getNewReleases() {
-    const countMusics = 6;
-    let option = new RequestOptions({headers: headers});
-    return this._http.get(api_url + '/search?type=album')
+    if (!this.newReleases.length) {
+      return this.loadNewReleases();
+    } else {
+      return Observable.of(this.newReleases);
+    }
+  }
+
+  loadNewReleases() {
+    let params = new URLSearchParams();
+    params.set('q', 'tag:new');
+    params.set('type', 'album');
+    params.set('limit', '6');
+    let option = new RequestOptions({search: params});
+    return this.http.get(`${this.api_url}search`, option)
+      .map(res => {
+        this.newReleases = res.json().albums.items;
+        return this.newReleases;
+      });
+  }
+
+  getAlbum(id: number) {
+    return this.http.get(`${this.api_url}albums/${id}`)
       .map(res => res.json());
   }
 
-  getAlbum(id: number){
-    return this._http.get(api_url+'/albums/'+id)
-      .map(res=>res.json());
+  getMusicsByGenre(genre) {
+    let params = new URLSearchParams();
+    params.set('q', `genre:"${genre}"`);
+    params.set('type', 'artist');
+    params.set('limit', '6');
+    let option = new RequestOptions({search: params});
+    return this.http.get(`${this.api_url}search`, option)
+      .map(res => res.json().artists.items);
   }
 
 }

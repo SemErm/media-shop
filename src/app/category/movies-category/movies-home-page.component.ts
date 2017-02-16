@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {MoviesService} from "../../shared/services/movies.service";
-import {Router} from "@angular/router";
 import * as _ from 'lodash';
 
 @Component({
@@ -10,16 +9,15 @@ import * as _ from 'lodash';
 })
 
 export class MoviesHomePageComponent implements OnInit{
-  private genres = [];
   private randomGenres = [];
   private nowPlayingMovies = [];
 
   constructor(private moviesService: MoviesService) {
   }
 
-  setRandomGenres() {
+  setRandomGenres(genres) {
     const numberGenres = 3;
-    let tmpGenres = this.genres;
+    let tmpGenres = genres;
 
     for (let i = 0; i < numberGenres; i++) {
       let random = _.random(0, tmpGenres.length - 1);
@@ -41,8 +39,7 @@ export class MoviesHomePageComponent implements OnInit{
   ngOnInit() {
     this.moviesService.getGenres()
       .subscribe(genres => {
-        this.genres = genres;
-        this.setRandomGenres();
+        this.setRandomGenres(genres);
       });
 
     this.moviesService.getNowPlayingMovies()

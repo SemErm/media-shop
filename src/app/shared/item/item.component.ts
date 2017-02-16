@@ -28,11 +28,6 @@ export class ItemComponent {
   }
 
   goToDetail(item) {
-    switch (item.type) {
-      case 'movie': {
-        this.router.navigate(['product'], {queryParams: {'type': item.type, id: item.id}});
-        break;
-      }
-    }
+    this.router.navigate(['product'], {queryParams: {'type': item.type, id: item.id}});
   }
 }

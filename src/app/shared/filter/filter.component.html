@@ -9,11 +9,18 @@
     <label for="dateTo">Date To</label>
     <input formControlName="dateTo" placeholder="Date To" class="form-control" type="date" id="dateTo">
   </div>
-  <div class="form-group">
+  <div class="form-group" *ngIf="nameFilter==='movies'">
     <select formControlName="genres" class="form-control">
       <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name }}</option>
     </select>
   </div>
+
+  <div class="form-group" *ngIf="nameFilter==='musics'">
+    <select formControlName="genres" class="form-control">
+      <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+    </select>
+  </div>
+
   <div class="form-group">
     <button class="btn btn-info" (click)="filterPage()">Filter</button>
     <button class="btn btn-danger" (click)="onReset()">Reset</button>

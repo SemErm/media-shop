@@ -5,6 +5,17 @@
     <app-item [item]="movie"></app-item>
   </div>
 </div>
-
-<h1><a routerLink="/" routerLinkActive="active">Games</a></h1>
+<h1><a routerLink="games" routerLinkActive="active">Games</a></h1>
 <hr>
+<div class="row">
+  <div class="col-sm-4 col-md-2" *ngFor="let game of resentlyGames">
+    <app-item [item]="game"></app-item>
+  </div>
+</div>
+<h1><a routerLink="musics" routerLinkActive="active">Musics</a></h1>
+<hr>
+<div class="row">
+  <div class="col-sm-4 col-md-2" *ngFor="let music of newReleasesMusics">
+    <app-item [item]="music"></app-item>
+  </div>
+</div>
