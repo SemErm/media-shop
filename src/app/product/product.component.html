@@ -46,7 +46,7 @@
           <li class="list-group-item"><strong>Homepage: </strong><a href="{{product.homepage}}" target="_blank">{{product.homepage}}</a>
           </li>
         </ul>
-        <ul class="list-group" *ngIf="product.type==='artist'">
+        <ul class="list-group" *ngIf="product.type==='artist' || product.type==='album'">
           <li class="list-group-item active">Top tracks:</li>
           <li class="list-group-item" *ngFor="let track of product.tracks">{{track.name}}</li>
         </ul>

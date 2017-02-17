@@ -50,12 +50,12 @@ export class FilterPageComponent implements OnInit {
               if (val === 'genres') filter['filter[genres][eq]'] = params[val];
               if (val === 'dateTo') filter['filter[release_dates.date][lte]'] = params[val];
               if (val === 'dateFrom') filter['filter[release_dates.date][gte]'] = params[val];
+              if (val === 'gameMode') filter['filter[game_modes][geq]'] = params[val];
             }
             let games = [];
             this.gamesService.getFilterGame(filter)
               .subscribe(response => {
                 let idsGames = _.chunk(response, 6);
-                console.log(idsGames);
                 for (let section of idsGames) {
                   let sectionGames = [];
                   for (let idGame of section) {

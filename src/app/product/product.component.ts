@@ -50,6 +50,10 @@ export class ProductComponent {
             this.musicService.getAlbum(params['id'])
               .subscribe(album => {
                 this.product = this.musicService.generateMusic(album);
+                this.musicService.getAlbumTracks(params['id'])
+                  .subscribe(tracks => {
+                    this.product.tracks = tracks;
+                  });
                 console.log(this.product);
               });
             break;

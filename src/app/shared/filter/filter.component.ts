@@ -15,6 +15,7 @@ export class FilterComponent implements OnInit {
   @Input() nameFilter;
   private filterForm: FormGroup;
   private genres = [];
+  private gameModes = [];
 
   constructor(private gamesService: GamesService,
               private moviesService: MoviesService,
@@ -51,10 +52,15 @@ export class FilterComponent implements OnInit {
           .subscribe(genres => {
             this.genres = genres;
           });
+        this.gamesService.getGameModes()
+          .subscribe(gameMode=>{
+            this.gameModes = gameMode;
+          });
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateTo: new FormControl(),
-          dateFrom: new FormControl()
+          dateFrom: new FormControl(),
+          gameMode: new FormControl()
         });
         break;
       }

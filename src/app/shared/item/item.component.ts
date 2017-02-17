@@ -23,7 +23,7 @@ export class ItemComponent {
     if (this.auth.authenticated()) {
       this.basketService.addItem(item);
       if (this.auth.userProfile.toasts.info)
-        this.toasterService.pop('info', 'Add', 'id-' + item.id + ' ' + item.type);
+        this.toasterService.pop('info', 'Add',`${item.name} ${item.type}`);
     }
   }
 

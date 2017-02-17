@@ -3,7 +3,6 @@ import {Http, RequestOptions, URLSearchParams} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
 import {Product} from "../../product/product";
-import {Auth} from "./auth.service";
 
 @Injectable()
 export class MusicsService {
@@ -96,6 +95,11 @@ export class MusicsService {
   getArtist(id: number) {
     return this.http.get(`${this.api_url}artists/${id}`)
       .map(res => res.json());
+  }
+
+  getAlbumTracks(id:number){
+    return this.http.get(`${this.api_url}albums/${id}/tracks`)
+      .map(res=>res.json().items);
   }
 
   getTopTracks(id: number) {

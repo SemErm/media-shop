@@ -4,7 +4,6 @@ import "rxjs/add/operator/map";
 import * as _ from "lodash";
 import {Observable} from "rxjs";
 import {Product} from "../../product/product";
-import {Auth} from "./auth.service";
 
 const api_key = 'mOOXc4tX8Pmsh0FpTzd1KwlWjSHhp1MuPfXjsnCJsAUgGEcL9O';
 const api_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/';
@@ -17,6 +16,7 @@ const headers = new Headers({
 export class GamesService {
 
   private genres = [];
+  private gameModes = [];
   private newGames = [];
   private pathNoImage = "assets/no-image.png";
   private pathImage = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
@@ -72,12 +72,19 @@ export class GamesService {
 
   getGenres() {
     if (!this.genres.length) {
-      console.log('load genres');
       return this.loadGenres();
     }
     else {
-      console.log('no load genres');
       return Observable.of(this.genres);
+    }
+  }
+
+  getGameModes() {
+    if (!this.gameModes.length) {
+      return this.loadGameModes();
+    }
+    else {
+      return Observable.of(this.gameModes);
     }
   }
 
@@ -90,6 +97,18 @@ export class GamesService {
       .map(res => {
         this.genres = res.json();
         return this.genres;
+      });
+  }
+
+  loadGameModes() {
+    let params = new URLSearchParams();
+    params.set('fields', 'id,name');
+    params.set('limit', '20');
+    let options = new RequestOptions({headers: headers, search: params});
+    return this._http.get(`${api_url}game_modes/`, options)
+      .map(res => {
+        this.gameModes = res.json();
+        return this.gameModes;
       });
   }
 

@@ -4,6 +4,10 @@
   <div class="row" *ngFor="let sectionBasket of basketsItems">
     <div class="col-sm-4 col-md-2" *ngFor="let item of sectionBasket">
       <div class="thumbnail">
+        <div class="label label-default" *ngIf="item.type==='movie'">Movie</div>
+        <div class="label label-success" *ngIf="item.type==='album'">Album</div>
+        <div class="label label-info" *ngIf="item.type==='artist'">Artist</div>
+        <div class="label label-danger" *ngIf="item.type==='game'">Game</div>
         <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
         <div class="caption">
           <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>

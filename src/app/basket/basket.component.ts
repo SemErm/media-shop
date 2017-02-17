@@ -28,22 +28,18 @@ export class BasketComponent implements OnInit {
       });
     if (this.auth.userProfile) {
       this.basketsItems = _.chunk(this.basketService.getItems(), 6);
+      console.log(this.basketsItems);
     }
   }
 
   remove(item) {
     this.basketService.removeItem(item);
     if (this.auth.userProfile.toasts.warning)
-      this.toasterService.pop('warning', 'Delete', 'id-' + item.id + ' ' + item.type);
+      this.toasterService.pop('warning', 'Delete', `${item.name} ${item.type}`);
     this.basketsItems = _.chunk(this.basketService.getItems(), 6);
   }
 
   goToDetail(item) {
-    switch (item.type) {
-      case 'movie': {
-        this.router.navigate(['movies', item.id]);
-        break;
-      }
-    }
+    this.router.navigate(['product'], {queryParams: {'type': item.type, id: item.id}});
   }
 }

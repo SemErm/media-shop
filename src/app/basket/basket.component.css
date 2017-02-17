@@ -1,4 +1,8 @@
-.thumbnail h4 {
+.thumbnail img, .thumbnail h4{
+  cursor: pointer;
+}
+
+.thumbnail h4{
   font-size: 20px;
   height: 45px;
   overflow: hidden;
@@ -11,6 +15,11 @@
   cursor: pointer;
   bottom: 25px;
   right: 10px;
-  top: auto;
+  top:auto;
   font-size: large;
+}
+.label{
+  position: absolute;
+  bottom: 25px;
+  left: 10px;
 }

@@ -21,7 +21,6 @@ export class BasketService {
 
   getBasket(clientID) {
     if (this.basketsUsers = JSON.parse(localStorage.getItem('baskets'))) {
-      console.log('get basketsUsers');
       this.currentBasket = _.find(this.basketsUsers, (bask) => {
         return bask.clientID === clientID
       });
