@@ -16,7 +16,7 @@ export class MusicsHomePageComponent implements OnInit {
 
   setRandomGenres() {
     const numberGenres = 3;
-    let tmpGenres = this.musicsService.genres;
+    let tmpGenres = this.musicsService.getGenres();
     for (let i = 0; i < numberGenres; i++) {
       let random = _.random(0, tmpGenres.length - 1);
       let newSectionGenre: any = {};

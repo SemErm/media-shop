@@ -13,6 +13,8 @@ import {ProfileEditComponent} from "./profile/edit.component";
 import {BasketComponent} from "./basket/basket.component";
 import {MusicsCategoryComponent} from "./category/musics-category/musics-category.component";
 import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";
+import {GamesCategoryComponent} from "./category/games-category/games-category.component";
+import {GamesHomePageComponent} from "./category/games-category/games-home-page.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -28,6 +30,10 @@ const routes: Routes = [
     {path: 'filter', component: FilterPageComponent}
   ]
   },
+  {path: 'games',component: GamesCategoryComponent, children:[
+    {path: '', component: GamesHomePageComponent},
+    {path: 'filter', component: FilterPageComponent}
+  ]},
   {path: 'product', component: ProductComponent},
   {
     path: 'profile', component: ProfileMainPageComponent, children: [

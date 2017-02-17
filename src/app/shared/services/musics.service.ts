@@ -3,6 +3,8 @@ import {Http, RequestOptions, URLSearchParams} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
 import {Product} from "../../product/product";
+import {Auth} from "./auth.service";
+
 @Injectable()
 export class MusicsService {
   private api_url = 'https://api.spotify.com/v1/';
@@ -42,26 +44,26 @@ export class MusicsService {
     'freak folk'
   ];
 
-  get genres() {
+  getGenres() {
     return Array.from(this.genresMusic);
   }
 
   constructor(private http: Http) {
   }
 
-  generateMusic(music) {
+  generateMusic(item) {
     let newMusic = new Product();
-    newMusic.id = music.id;
-    newMusic.type = 'music';
-    newMusic.name = music.name;
-    newMusic.homepage = music.external_urls.spotify;
-    newMusic.poster = music.images[1] ? music.images[0].url : this.pathNoImage;
+    newMusic.id = item.id;
+    newMusic.type = item.type;
+    newMusic.name = item.name;
+    newMusic.homepage = item.external_urls.spotify;
+    newMusic.poster = item.images[1] ? item.images[1].url : this.pathNoImage;
     newMusic.price = (5.55).toFixed(2);
-    if (music.genres) newMusic.genres = music.genres;
-    if (music.label) newMusic.label = music.label;
-    if (music.release_date) newMusic.release_date = music.release_date;
-    if (music.artists) newMusic.artists = music.artists.map(artist => artist.name);
-    if (music.popularity) newMusic.vote = music.popularity;
+    if (item.genres) newMusic.genres = item.genres;
+    if (item.label) newMusic.label = item.label;
+    if (item.release_date) newMusic.release_date = item.release_date;
+    if (item.artists) newMusic.artists = item.artists.map(artist => artist.name);
+    if (item.popularity) newMusic.vote = item.popularity;
     return newMusic;
   }
 
@@ -76,7 +78,7 @@ export class MusicsService {
   loadNewReleases() {
     let params = new URLSearchParams();
     params.set('q', 'tag:new');
-    params.set('type', 'album');
+    params.set('type', 'album,artist');
     params.set('limit', '6');
     let option = new RequestOptions({search: params});
     return this.http.get(`${this.api_url}search`, option)
@@ -91,11 +93,31 @@ export class MusicsService {
       .map(res => res.json());
   }
 
+  getArtist(id: number) {
+    return this.http.get(`${this.api_url}artists/${id}`)
+      .map(res => res.json());
+  }
+
+  getTopTracks(id: number) {
+    return this.http.get(`${this.api_url}artists/${id}/top-tracks?country=US`)
+      .map(res => res.json().tracks)
+  }
+
   getMusicsByGenre(genre) {
     let params = new URLSearchParams();
     params.set('q', `genre:"${genre}"`);
     params.set('type', 'artist');
     params.set('limit', '6');
+    let option = new RequestOptions({search: params});
+    return this.http.get(`${this.api_url}search`, option)
+      .map(res => res.json().artists.items);
+  }
+
+  getFilterMusic(filter) {
+    let params = new URLSearchParams();
+    params.set('q', `${filter}`);
+    params.set('type', 'album,artist');
+    params.set('limit', '18');
     let option = new RequestOptions({search: params});
     return this.http.get(`${this.api_url}search`, option)
       .map(res => res.json().artists.items);

@@ -1,0 +1,17 @@
+<h1>Games</h1>
+<hr>
+<div class="row">
+  <div class="col-sm-4 col-md-2" *ngFor="let game of resentlyGames">
+    <app-item [item]="game"></app-item>
+  </div>
+</div>
+
+<div *ngFor="let genre of randomGenres">
+  <h1>{{genre.name}}</h1>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4 col-md-2" *ngFor="let game of genre.games">
+      <app-item [item]="game"></app-item>
+    </div>
+  </div>
+</div>

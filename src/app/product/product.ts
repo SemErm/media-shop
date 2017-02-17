@@ -15,4 +15,6 @@ export class Product {
   public overview?: string;
   public label?:string;
   public artists?:string;
+  public game_modes?:any;
+  public tracks?:any;
 }

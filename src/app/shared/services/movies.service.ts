@@ -3,6 +3,7 @@ import {Http, URLSearchParams, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
 import {Product} from "../../product/product";
+import {Auth} from "./auth.service";
 
 const api_key = '544ce33d881d9c8b4f234cc65fa42475';
 const api_url = 'https://api.themoviedb.org/3';

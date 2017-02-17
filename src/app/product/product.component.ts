@@ -41,14 +41,27 @@ export class ProductComponent {
             this.gamesService.getGame(params['id'])
               .subscribe(game => {
                 this.product = this.gamesService.generateGame(game);
+                this.product.genres = this.gamesService.getNameGenres(this.product.genres);
                 console.log(this.product);
               });
             break;
           }
-          case 'music': {
+          case 'album': {
             this.musicService.getAlbum(params['id'])
-              .subscribe(music => {
-                this.product = this.musicService.generateMusic(music);
+              .subscribe(album => {
+                this.product = this.musicService.generateMusic(album);
+                console.log(this.product);
+              });
+            break;
+          }
+          case 'artist': {
+            this.musicService.getArtist(params['id'])
+              .subscribe(artist => {
+                this.product = this.musicService.generateMusic(artist);
+                this.musicService.getTopTracks(params['id'])
+                  .subscribe(tracks => {
+                    this.product.tracks = tracks;
+                  });
                 console.log(this.product);
               });
             break;

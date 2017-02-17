@@ -21,6 +21,8 @@ import {ModalWindowComponent} from "./shared/modal-window.component/modal-window
 import {ProductComponent} from "./product/product.component";
 import {MusicsCategoryComponent} from "./category/musics-category/musics-category.component";
 import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";
+import {GamesCategoryComponent} from "./category/games-category/games-category.component";
+import {GamesHomePageComponent} from "./category/games-category/games-home-page.component";
 
 
 
@@ -39,7 +41,9 @@ import {MusicsHomePageComponent} from "./category/musics-category/musics-home-pa
     ProfileEditComponent,
     BasketComponent,
     ModalWindowComponent,
-    ProductComponent
+    ProductComponent,
+    GamesCategoryComponent,
+    GamesHomePageComponent
   ],
   imports: [
     BrowserModule,
