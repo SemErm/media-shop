@@ -30,29 +30,24 @@ export class GamesHomePageComponent implements OnInit {
         this.gamesService.getGame(game)
           .subscribe(game => {
             newSectionGenre.games.push(this.gamesService.generateGame(game));
+            tmpGenres = _.remove(tmpGenres, (item) => {
+              return _.last(this.randomGenres) !== item.name;
+            });
           })
       }
       this.randomGenres.push(newSectionGenre);
-      /*this.moviesService.getMoviesByGenres(newSectionGenre.id)
-        .subscribe(res => {
-          newSectionGenre.movies = res.map(movie => {
-            return this.moviesService.generateMovie(movie)
-          });
-          this.randomGenres.push(newSectionGenre);
-          tmpGenres = _.remove(tmpGenres, (item) => {
-            return _.last(this.randomGenres) !== item.name;
-          });
-        });*/
     }
   }
 
   ngOnInit() {
+
     this.gamesService.getNewGames()
       .subscribe(games => {
         this.resentlyGames = games.map(game => {
           return this.gamesService.generateGame(game);
         });
       });
+
     this.gamesService.getGenres()
       .subscribe(genres => {
         this.setRandomGenres(genres);

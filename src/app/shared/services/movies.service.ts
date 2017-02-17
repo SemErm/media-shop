@@ -3,7 +3,6 @@ import {Http, URLSearchParams, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
 import {Product} from "../../product/product";
-import {Auth} from "./auth.service";
 
 const api_key = '544ce33d881d9c8b4f234cc65fa42475';
 const api_url = 'https://api.themoviedb.org/3';
@@ -26,15 +25,15 @@ export class MoviesService {
     newMovie.name = movie.title;
     newMovie.poster = movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage;
     newMovie.price = (movie.vote_average * 5.5 + 5).toFixed(2);
-    newMovie.homepage = movie.homepage;
+    newMovie.homepage = movie.homepage || 'No information';
     newMovie.vote = movie.vote_average;
-    newMovie.tagline = movie.tagline;
+    newMovie.tagline = movie.tagline || 'No information';
     newMovie.release_date = movie.release_date;
-    newMovie.budget = movie.budget;
-    newMovie.production_companies = movie.production_companies;
-    newMovie.production_countries = movie.production_countries;
-    newMovie.genres = movie.genres;
-    newMovie.overview = movie.overview;
+    newMovie.budget = movie.budget || 'No information';
+    newMovie.production_companies = movie.production_companies || ['No information'];
+    newMovie.production_countries = movie.production_countries || ['No information'];
+    newMovie.genres = movie.genres || ['No information'];
+    newMovie.overview = movie.overview || 'No information';
     return newMovie;
   }
 
@@ -81,6 +80,18 @@ export class MoviesService {
   getMovie(id: number) {
     return this.http.get(`${api_url}/movie/${id}?api_key=${api_key}&language=en-US`)
       .map(res => res.json());
+  }
+
+  gerSearchMovies(query) {
+    console.log(query);
+    let params = new URLSearchParams();
+    params.set('api_key', api_key);
+    params.set('query', query);
+    let options = new RequestOptions({
+      search: params
+    });
+    return this.http.get(`${api_url}/search/movie`, options)
+      .map(res => res.json().results)
   }
 
   getMoviesByFilter(filter) {

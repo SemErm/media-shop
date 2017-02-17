@@ -15,6 +15,7 @@ import {MusicsCategoryComponent} from "./category/musics-category/musics-categor
 import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";
 import {GamesCategoryComponent} from "./category/games-category/games-category.component";
 import {GamesHomePageComponent} from "./category/games-category/games-home-page.component";
+import {SearchComponent} from "./search/search.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -44,7 +45,8 @@ const routes: Routes = [
     {path: 'edit', component: ProfileEditComponent}
   ]
   },
-  {path: 'basket', component: BasketComponent}
+  {path: 'basket', component: BasketComponent},
+  {path: 'search', component :SearchComponent}
 ];
 
 @NgModule({

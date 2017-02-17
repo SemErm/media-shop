@@ -97,14 +97,24 @@ export class MusicsService {
       .map(res => res.json());
   }
 
-  getAlbumTracks(id:number){
+  getAlbumTracks(id: number) {
     return this.http.get(`${this.api_url}albums/${id}/tracks`)
-      .map(res=>res.json().items);
+      .map(res => res.json().items);
   }
 
   getTopTracks(id: number) {
     return this.http.get(`${this.api_url}artists/${id}/top-tracks?country=US`)
       .map(res => res.json().tracks)
+  }
+
+  getSearch(query) {
+    let params = new URLSearchParams();
+    params.set('q', query);
+    params.set('type', 'album');
+    params.set('limit', '18');
+    let option = new RequestOptions({search: params});
+    return this.http.get(`${this.api_url}search`, option)
+      .map(res => res.json().albums.items);
   }
 
   getMusicsByGenre(genre) {

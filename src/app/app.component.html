@@ -5,7 +5,7 @@
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         </button>
-        <a class="navbar-brand" routerLink="/">Media Shop</a>
+        <a routerLinkActive="active" class="navbar-brand" routerLink="/">Media Shop</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
@@ -15,9 +15,9 @@
         </ul>
         <div class="navbar-form navbar-left">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input [(ngModel)]="query" type="search" class="form-control" placeholder="Search for..." required>
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Search</button>
+              <input class="btn btn-default" type="button" (click)="search()" value="Search">
             </span>
           </div>
         </div>

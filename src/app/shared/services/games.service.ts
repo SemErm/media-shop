@@ -130,6 +130,19 @@ export class GamesService {
       .map(res => res.json()[0]);
   }
 
+  getSearch(query){
+    let params = new URLSearchParams();
+    params.set('limit', '18');
+    params.set('filter[name][prefix]', query);
+    let options = new RequestOptions({
+      headers: headers,
+      search: params
+    });
+
+    return this._http.get(`${api_url}games/?`, options)
+      .map(res => res.json());
+  }
+
   getFilterGame(filter: any) {
 
     let params = new URLSearchParams();

@@ -1,1 +1,14 @@
-
+<div class="row">
+  <div class="col-md-2">
+    <filter [nameFilter]="type"></filter>
+  </div>
+  <div class="col-md-10">
+    <div *ngFor="let section of items">
+      <div class="row">
+        <div class="col-sm-4 col-md-2" *ngFor="let item of section">
+          <app-item [item]="item"></app-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

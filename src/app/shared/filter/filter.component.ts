@@ -53,9 +53,18 @@ export class FilterComponent implements OnInit {
             this.genres = genres;
           });
         this.gamesService.getGameModes()
-          .subscribe(gameMode=>{
+          .subscribe(gameMode => {
             this.gameModes = gameMode;
           });
+        this.filterForm = this.fb.group({
+          genres: new FormControl(),
+          dateTo: new FormControl(),
+          dateFrom: new FormControl(),
+          gameMode: new FormControl()
+        });
+        break;
+      }
+      default: {
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateTo: new FormControl(),
@@ -69,33 +78,11 @@ export class FilterComponent implements OnInit {
 
   filterPage() {
     let filter: any = {};
-    switch (this.nameFilter) {
-      case 'movies': {
-        filter['type'] = this.nameFilter;
-        for (let val of Object.keys(this.filterForm.value)) {
-          filter[val] = this.filterForm.value[val];
-        }
-        this.router.navigate(['movies/filter'], {queryParams: filter});
-        break;
-      }
-      case 'games': {
-        filter['type'] = this.nameFilter;
-        for (let val of Object.keys(this.filterForm.value)) {
-          filter[val] = this.filterForm.value[val];
-        }
-        this.router.navigate(['games/filter'], {queryParams: filter});
-        break;
-      }
-      case 'musics':{
-        filter['type'] = this.nameFilter;
-        for (let val of Object.keys(this.filterForm.value)) {
-          filter[val] = this.filterForm.value[val];
-        }
-        this.router.navigate(['musics/filter'], {queryParams: filter});
-        break;
-      }
+    filter['type'] = this.nameFilter;
+    for (let val of Object.keys(this.filterForm.value)) {
+      filter[val] = this.filterForm.value[val];
     }
-
+    this.router.navigate([`${this.nameFilter}/filter`], {queryParams: filter});
   }
 
   onReset() {
