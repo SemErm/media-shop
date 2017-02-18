@@ -39,9 +39,9 @@ export class SearchComponent implements OnInit {
           }
           case 'musics': {
             console.log('case musics');
-            this.musicsService.getSearch(params['query'], 'artist', 18)
+            this.musicsService.getSearch(params['query'], 'album', 18)
               .subscribe(musics => {
-                this.items = _.chunk(musics.map(music => {
+                this.items = _.chunk(musics.albums.items.map(music => {
                   return this.musicsService.generateMusic(music);
                 }), 6)
               });

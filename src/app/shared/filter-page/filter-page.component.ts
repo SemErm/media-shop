@@ -53,18 +53,13 @@ export class FilterPageComponent implements OnInit {
             }
             let games = [];
             this.gamesService.getFilterGame(filter)
-              .subscribe(response => {
-                let idsGames = _.chunk(response, 6);
-                for (let section of idsGames) {
-                  let sectionGames = [];
-                  for (let idGame of section) {
-                    this.gamesService.getGame(idGame.id)
-                      .subscribe(game => {
-                        sectionGames.push(this.gamesService.generateGame(game));
-                      })
-                  }
-                  this.items.push(sectionGames);
-                }
+              .subscribe(gamesID => {
+                this.gamesService.getGames(gamesID)
+                  .subscribe(games => {
+                    this.items = _.chunk(games.map(game => {
+                      return this.gamesService.generateGame(game)
+                    }), 6)
+                  })
               });
             break;
           }

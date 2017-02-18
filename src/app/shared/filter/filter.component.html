@@ -1,9 +1,9 @@
 <h1>Filter</h1>
 <hr>
-<form [formGroup]="filterForm">
+<form [formGroup]="filterForm" (ngSubmit)="filterPage()">
 
   <div class="form-group" *ngIf="search">
-    <select formControlName="type" class="form-control" [(ngModel)]="nameFilter" (click)="changeTypes(nameFilter)">
+    <select formControlName="type" class="form-control" (click)="changeTypes(nameFilter)">
       <option *ngFor="let type of types" [value]="type" >{{type | uppercase}}</option>
     </select>
   </div>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="form-group">
-    <button class="btn btn-info" (click)="filterPage()">Filter</button>
-    <button class="btn btn-danger" (click)="onReset()">Reset</button>
+    <button type="submit" class="btn btn-info">Filter</button>
+    <button type="reset" class="btn btn-danger" (click)="onReset()">Reset</button>
   </div>
 </form>
