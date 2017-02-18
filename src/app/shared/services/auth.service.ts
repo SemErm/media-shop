@@ -43,6 +43,7 @@ export class Auth {
           };
           this.userProfile['basket'] = this.basketService.getBasket(this.userProfile.clientID);
           this.userProfile['addresses'] = [];
+          this.userProfile['currency'] = 'dollar';
           localStorage.setItem('profiles', JSON.stringify(this.profiles));
         } else {
           this.userProfile = _.find(this.profiles, (item) => item.clientID === profile.clientID);

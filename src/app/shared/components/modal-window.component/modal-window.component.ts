@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {Auth} from "../services/auth.service";
+import {Auth} from "../../services/auth.service";
+
 
 @Component({
   moduleId: module.id,
   selector: 'modal-window',
-  templateUrl: './modal-window.component.html'
+  templateUrl: 'modal-window.component.html'
 })
 export class ModalWindowComponent {
   private address = {};

@@ -1,21 +1,23 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule,} from "@angular/forms";
 
 import {GamesService} from "./services/games.service";
 import {MoviesService} from "./services/movies.service";
 import {MusicsService} from "./services/musics.service";
-import {FilterComponent} from "./filter/filter.component";
-import {FilterPageComponent} from "./filter-page/filter-page.component";
-import {ItemComponent} from "./item/item.component";
+import {FilterComponent} from "./components/filter/filter.component";
+import {FilterPageComponent} from "./components/filter-page/filter-page.component";
+import {ItemComponent} from "./components/item/item.component";
 import {Auth} from "./services/auth.service";
 import {BasketService} from "./services/basket.service";
+import {CurrencyPrice} from "./pipes/currency.pipe";
 
 @NgModule({
   declarations: [
     FilterComponent,
     FilterPageComponent,
-    ItemComponent
+    ItemComponent,
+    CurrencyPrice
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,10 @@ import {BasketService} from "./services/basket.service";
   exports: [
     FilterComponent,
     FilterPageComponent,
-    ItemComponent
+    ItemComponent,
+    CurrencyPrice,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {

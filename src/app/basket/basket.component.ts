@@ -28,7 +28,6 @@ export class BasketComponent implements OnInit {
       });
     if (this.auth.userProfile) {
       this.basketsItems = _.chunk(this.basketService.getItems(), 6);
-      console.log(this.basketsItems);
     }
   }
 

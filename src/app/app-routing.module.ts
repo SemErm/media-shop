@@ -3,7 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
 import {ProductComponent} from "./product/product.component";
-import {FilterPageComponent} from "./shared/filter-page/filter-page.component";
+import {FilterPageComponent} from "./shared/components/filter-page/filter-page.component";
 import {MoviesHomePageComponent} from "./category/movies-category/movies-home-page.component";
 import {ProfileMainPageComponent} from "./profile/main-page.component";
 import {ProfileComponent} from "./profile/profile.component";

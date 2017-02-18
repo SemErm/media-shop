@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {ToasterModule} from 'angular2-toaster';
 
@@ -17,7 +17,7 @@ import {ProfileAddressesComponent} from "./profile/addresses.component";
 import {ProfileEditComponent} from "./profile/edit.component";
 import {BasketComponent} from "./basket/basket.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {ModalWindowComponent} from "./shared/modal-window.component/modal-window.component";
+import {ModalWindowComponent} from "./shared/components/modal-window.component/modal-window.component";
 import {ProductComponent} from "./product/product.component";
 import {MusicsCategoryComponent} from "./category/musics-category/musics-category.component";
 import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";

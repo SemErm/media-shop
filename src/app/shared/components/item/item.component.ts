@@ -1,13 +1,13 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
-import {BasketService} from "../services/basket.service";
 import {ToasterService} from "angular2-toaster";
-import {Auth} from "../services/auth.service";
+import {BasketService} from "../../services/basket.service";
+import {Auth} from "../../services/auth.service";
 @Component({
   moduleId: module.id,
   selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  templateUrl: 'item.component.html',
+  styleUrls: ['item.component.css']
 })
 
 export class ItemComponent {

@@ -1,9 +1,9 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {GamesService} from "../services/games.service";
-import {MoviesService} from "../services/movies.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
-import {MusicsService} from "../services/musics.service";
+import {GamesService} from "../../services/games.service";
+import {MoviesService} from "../../services/movies.service";
+import {MusicsService} from "../../services/musics.service";
 
 
 @Component({
@@ -27,7 +27,7 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.search = this.nameFilter === 'all' ? true : false;
+    this.search = this.nameFilter === 'all';
     this.changeTypes(this.nameFilter);
     this.filterForm = this.fb.group({
       type: [this.nameFilter],

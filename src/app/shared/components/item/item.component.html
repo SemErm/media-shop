@@ -4,7 +4,7 @@
     <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
     <p class="text-center">
       <a class="btn btn-primary" role="button" (click)="addItem(item)">Add <span
-        class="glyphicon glyphicon-shopping-cart"></span> $ {{item.price}}</a>
+        class="glyphicon glyphicon-shopping-cart"></span>{{item.price | currencyPrice}}</a>
     </p>
   </div>
 </div>

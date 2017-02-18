@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Auth} from "../shared/services/auth.service";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalWindowComponent} from "../shared/modal-window.component/modal-window.component";
+import {ModalWindowComponent} from "../shared/components/modal-window.component/modal-window.component";
 
 @Component({
   moduleId: module.id,

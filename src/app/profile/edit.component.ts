@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Auth} from "../shared/services/auth.service";
-
 import {Router} from "@angular/router";
 import "rxjs/add/operator/map";
 import {Location} from "@angular/common";
-import {ToasterService} from 'angular2-toaster';
+import {ToasterService} from "angular2-toaster";
+import {FormGroup, FormBuilder} from "@angular/forms";
 
 @Component({
   moduleId: module.id,
@@ -13,19 +13,33 @@ import {ToasterService} from 'angular2-toaster';
 })
 
 export class ProfileEditComponent implements OnInit {
-
-  user = {};
+  private editForm: FormGroup;
+  user: any;
 
   constructor(private auth: Auth,
               private router: Router,
               private location: Location,
-              private toasterService: ToasterService) {
+              private toasterService: ToasterService,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    if (this.auth.authenticated() && this.auth.userProfile) {
-      this.user = this.auth.userProfile;
-    }
+    if (!this.auth.authenticated() || !this.auth.userProfile) return;
+    this.user = this.auth.userProfile;
+    this.editForm = this.fb.group({
+      given_name: this.user.given_name || [''],
+      family_name: this.user.family_name || [''],
+      nickname: this.user.nickname || [''],
+      email: this.user.email || [''],
+      telephone: this.user.telephone || [''],
+      currency: this.user.currency || ['']
+    });
+    this.editForm.valueChanges
+      .subscribe(res => {
+        for (let field of Object.keys(res)) {
+          this.user[field] = res[field];
+        }
+      });
   }
 
   onSubmit() {

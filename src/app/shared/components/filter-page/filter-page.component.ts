@@ -1,16 +1,16 @@
 import {Component, OnInit} from "@angular/core";
-import {MoviesService} from "../services/movies.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import * as _ from "lodash";
 import "rxjs/add/operator/map";
-import {GamesService} from "../services/games.service";
-import {MusicsService} from "../services/musics.service";
+import {MoviesService} from "../../services/movies.service";
+import {GamesService} from "../../services/games.service";
+import {MusicsService} from "../../services/musics.service";
 
 @Component({
   moduleId: module.id,
   selector: 'filter-page',
-  templateUrl: './filter-page.component.html'
+  templateUrl: 'filter-page.component.html'
 })
 export class FilterPageComponent implements OnInit {
   private items = [];
