@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
           }
           case 'musics': {
             console.log('case musics');
-            this.musicsService.getSearch(params['query'],'artist',18)
+            this.musicsService.getSearch(params['query'], 'artist', 18)
               .subscribe(musics => {
                 this.items = _.chunk(musics.map(music => {
                   return this.musicsService.generateMusic(music);
@@ -71,27 +71,25 @@ export class SearchComponent implements OnInit {
             let result = [];
             Observable.forkJoin(
               this.moviesService.gerSearchMovies(params['query']),
-              this.musicsService.getSearch(params['query'],'album',18),
+              this.musicsService.getSearch(params['query'], 'album', 18),
               this.gamesService.getSearch(params['query'])
             )
               .subscribe(res => {
-                console.log(res[1]);
-                result = _.concat(
-                  res[0].map(movie => {
-                    return this.moviesService.generateMovie(movie);
-                  }),
-                  res[1].albums.items.map(music => {
-                    return this.musicsService.generateMusic(music);
-                  }),
-                  res[2].map(gameID => {
-                     this.gamesService.getGame(gameID.id)
-                      .subscribe(game => {
-                        return this.gamesService.generateGame(game);
+                this.gamesService.getGames(res[2])
+                  .subscribe(games => {
+                    result = _.concat(
+                      res[0].map(movie => {
+                        return this.moviesService.generateMovie(movie);
+                      }),
+                      res[1].albums.items.map(music => {
+                        return this.musicsService.generateMusic(music);
+                      }),
+                      games.map(game => {
+                        return this.gamesService.generateGame(game)
                       })
-                  })
-                );
-                console.log(result);
-                this.items = _.chunk(result, 6);
+                    );
+                    this.items = _.chunk(result, 6);
+                  });
               });
             break;
           }

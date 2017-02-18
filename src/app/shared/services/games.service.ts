@@ -124,13 +124,21 @@ export class GamesService {
       });
   }
 
+  getGames(gamesID) {
+    let result = [];
+    for (let gameID of gamesID) {
+      result.push(this.getGame(gameID.id))
+    }
+    return Observable.forkJoin(result)
+  }
+
   getGame(id: number) {
     let options = new RequestOptions({headers: headers});
     return this._http.get(api_url + 'games/' + id + '?fields=*', options)
       .map(res => res.json()[0]);
   }
 
-  getSearch(query){
+  getSearch(query) {
     let params = new URLSearchParams();
     params.set('limit', '18');
     params.set('filter[name][prefix]', query);

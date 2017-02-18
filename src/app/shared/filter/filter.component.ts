@@ -13,9 +13,11 @@ import {MusicsService} from "../services/musics.service";
 })
 export class FilterComponent implements OnInit {
   @Input() nameFilter;
+  private search: boolean = false;
   private filterForm: FormGroup;
   private genres = [];
   private gameModes = [];
+  private types = ['movies', 'musics', 'games'];
 
   constructor(private gamesService: GamesService,
               private moviesService: MoviesService,
@@ -25,12 +27,10 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.search = this.nameFilter === 'all';
+    this.changeTypes(this.nameFilter);
     switch (this.nameFilter) {
       case 'movies': {
-        this.moviesService.getGenres()
-          .subscribe(res => {
-            this.genres = res;
-          });
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateTo: new FormControl(),
@@ -39,7 +39,6 @@ export class FilterComponent implements OnInit {
         break;
       }
       case 'musics': {
-        this.genres = this.musicsService.getGenres();
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateFrom: new FormControl(),
@@ -48,14 +47,6 @@ export class FilterComponent implements OnInit {
         break;
       }
       case 'games': {
-        this.gamesService.getGenres()
-          .subscribe(genres => {
-            this.genres = genres;
-          });
-        this.gamesService.getGameModes()
-          .subscribe(gameMode => {
-            this.gameModes = gameMode;
-          });
         this.filterForm = this.fb.group({
           genres: new FormControl(),
           dateTo: new FormControl(),
@@ -66,6 +57,7 @@ export class FilterComponent implements OnInit {
       }
       default: {
         this.filterForm = this.fb.group({
+          type: new FormControl(),
           genres: new FormControl(),
           dateTo: new FormControl(),
           dateFrom: new FormControl(),
@@ -76,13 +68,40 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  changeTypes(type) {
+    switch (type) {
+      case 'movies': {
+        this.moviesService.getGenres()
+          .subscribe(genres => {
+            this.genres = genres;
+          });
+        break;
+      }
+      case 'musics':{
+        this.genres = this.musicsService.getGenres();
+        break;
+      }
+      case 'games':{
+        this.gamesService.getGenres()
+          .subscribe(genres => {
+            this.genres = genres;
+          });
+        this.gamesService.getGameModes()
+          .subscribe(gameMode => {
+            this.gameModes = gameMode;
+          });
+        break;
+      }
+    }
+  }
+
   filterPage() {
     let filter: any = {};
-    filter['type'] = this.nameFilter;
+    filter['type'] = this.nameFilter === 'all' ? this.filterForm.value['type'] : this.nameFilter;
     for (let val of Object.keys(this.filterForm.value)) {
       filter[val] = this.filterForm.value[val];
     }
-    this.router.navigate([`${this.nameFilter}/filter`], {queryParams: filter});
+    this.router.navigate([`${filter['type']}/filter`], {queryParams: filter});
   }
 
   onReset() {
