@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Subscription} from "rxjs";
+import {Subscription, Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {MoviesService} from "../shared/services/movies.service";
 import * as _ from "lodash";
@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
         this.type = params['type'];
         switch (this.type) {
           case 'movies': {
+            console.log('case movies');
             this.moviesService.gerSearchMovies(params['query'])
               .subscribe(movies => {
                 this.items = _.chunk(movies.map(movie => {
@@ -37,7 +38,8 @@ export class SearchComponent implements OnInit {
             break;
           }
           case 'musics': {
-            this.musicsService.getSearch(params['query'])
+            console.log('case musics');
+            this.musicsService.getSearch(params['query'],'artist',18)
               .subscribe(musics => {
                 this.items = _.chunk(musics.map(music => {
                   return this.musicsService.generateMusic(music);
@@ -46,8 +48,8 @@ export class SearchComponent implements OnInit {
             break;
           }
           case 'games': {
+            console.log('case games');
             this.items = [];
-            let games = [];
             this.gamesService.getSearch(params['query'])
               .subscribe(response => {
                 let idsGames = _.chunk(response, 6);
@@ -65,7 +67,32 @@ export class SearchComponent implements OnInit {
             break;
           }
           default: {
-
+            this.items = [];
+            let result = [];
+            Observable.forkJoin(
+              this.moviesService.gerSearchMovies(params['query']),
+              this.musicsService.getSearch(params['query'],'album',18),
+              this.gamesService.getSearch(params['query'])
+            )
+              .subscribe(res => {
+                console.log(res[1]);
+                result = _.concat(
+                  res[0].map(movie => {
+                    return this.moviesService.generateMovie(movie);
+                  }),
+                  res[1].albums.items.map(music => {
+                    return this.musicsService.generateMusic(music);
+                  }),
+                  res[2].map(gameID => {
+                     this.gamesService.getGame(gameID.id)
+                      .subscribe(game => {
+                        return this.gamesService.generateGame(game);
+                      })
+                  })
+                );
+                console.log(result);
+                this.items = _.chunk(result, 6);
+              });
             break;
           }
         }

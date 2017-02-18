@@ -75,14 +75,9 @@ export class MusicsService {
   }
 
   loadNewReleases() {
-    let params = new URLSearchParams();
-    params.set('q', 'tag:new');
-    params.set('type', 'album,artist');
-    params.set('limit', '6');
-    let option = new RequestOptions({search: params});
-    return this.http.get(`${this.api_url}search`, option)
+    return this.getSearch('tag:new', 'album', 6)
       .map(res => {
-        this.newReleases = res.json().albums.items;
+        this.newReleases = res.albums.items;
         return this.newReleases;
       });
   }
@@ -107,34 +102,25 @@ export class MusicsService {
       .map(res => res.json().tracks)
   }
 
-  getSearch(query) {
+  getSearch(query, type, limit): Observable<any> {
     let params = new URLSearchParams();
     params.set('q', query);
-    params.set('type', 'album');
-    params.set('limit', '18');
+    params.set('type', type);
+    params.set('limit', limit);
     let option = new RequestOptions({search: params});
     return this.http.get(`${this.api_url}search`, option)
-      .map(res => res.json().albums.items);
+      .map(res => res.json());
   }
 
   getMusicsByGenre(genre) {
-    let params = new URLSearchParams();
-    params.set('q', `genre:"${genre}"`);
-    params.set('type', 'artist');
-    params.set('limit', '6');
-    let option = new RequestOptions({search: params});
-    return this.http.get(`${this.api_url}search`, option)
-      .map(res => res.json().artists.items);
+    return this.getSearch(`genre:"${genre}"`, 'artist', 6)
+      .map(res => res.artists.items);
   }
 
   getFilterMusic(filter) {
-    let params = new URLSearchParams();
-    params.set('q', `${filter}`);
-    params.set('type', 'album,artist');
-    params.set('limit', '18');
-    let option = new RequestOptions({search: params});
-    return this.http.get(`${this.api_url}search`, option)
-      .map(res => res.json().artists.items);
+    console.log(filter);
+    return this.getSearch(filter, 'album,artist', 18)
+      .map(res => [].concat(res.artists.items, res.albums.items));
   }
 
 }

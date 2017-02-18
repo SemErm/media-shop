@@ -23,6 +23,7 @@ export class MusicsHomePageComponent implements OnInit {
       newSectionGenre['name'] = tmpGenres[random];
       this.musicsService.getMusicsByGenre(newSectionGenre.name)
         .subscribe(res => {
+          console.log(res);
           newSectionGenre.musics = res.map(music => {
             return this.musicsService.generateMusic(music)
           });
