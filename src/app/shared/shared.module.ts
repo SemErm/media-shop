@@ -10,14 +10,16 @@ import {FilterPageComponent} from "./components/filter-page/filter-page.componen
 import {ItemComponent} from "./components/item/item.component";
 import {Auth} from "./services/auth.service";
 import {BasketService} from "./services/basket.service";
-import {CurrencyPrice} from "./pipes/currency.pipe";
+import {CurrencyPricePipe} from "./pipes/currency.pipe";
+import {CapitalLetterPipe} from "./pipes/capital-letter.pipe";
 
 @NgModule({
   declarations: [
     FilterComponent,
     FilterPageComponent,
     ItemComponent,
-    CurrencyPrice
+    CurrencyPricePipe,
+    CapitalLetterPipe
   ],
   imports: [
     CommonModule,
@@ -28,9 +30,10 @@ import {CurrencyPrice} from "./pipes/currency.pipe";
     FilterComponent,
     FilterPageComponent,
     ItemComponent,
-    CurrencyPrice,
+    CurrencyPricePipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CapitalLetterPipe
   ]
 })
 export class SharedModule {

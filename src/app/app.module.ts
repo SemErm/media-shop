@@ -7,8 +7,6 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
 import {MainPageComponent} from "./main-page/main-page.component";
-import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
-import {MoviesHomePageComponent} from "./category/movies-category/movies-home-page.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileMainPageComponent} from "./profile/main-page.component";
 import {ProfileToastsComponent} from "./profile/toasts.component";
@@ -18,10 +16,6 @@ import {BasketComponent} from "./basket/basket.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ModalWindowComponent} from "./shared/components/modal-window.component/modal-window.component";
 import {ProductComponent} from "./product/product.component";
-import {MusicsCategoryComponent} from "./category/musics-category/musics-category.component";
-import {MusicsHomePageComponent} from "./category/musics-category/musics-home-page.component";
-import {GamesCategoryComponent} from "./category/games-category/games-category.component";
-import {GamesHomePageComponent} from "./category/games-category/games-home-page.component";
 import {SearchComponent} from "./search/search.component";
 import {CategoryComponent} from "./category/category.component";
 import {CategoryHomePageComponent} from "./category/category-home-page.component";
@@ -33,10 +27,6 @@ import {ConfirmationComponent} from "./checkout/confirmation.component";
   declarations: [
     AppComponent,
     MainPageComponent,
-    MoviesCategoryComponent,
-    MoviesHomePageComponent,
-    MusicsCategoryComponent,
-    MusicsHomePageComponent,
     ProfileComponent,
     ProfileMainPageComponent,
     ProfileToastsComponent,
@@ -45,8 +35,6 @@ import {ConfirmationComponent} from "./checkout/confirmation.component";
     BasketComponent,
     ModalWindowComponent,
     ProductComponent,
-    GamesCategoryComponent,
-    GamesHomePageComponent,
     SearchComponent,
     CategoryComponent,
     CategoryHomePageComponent,

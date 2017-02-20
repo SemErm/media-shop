@@ -1,6 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs";
 
 @Component({
   moduleId: module.id,
@@ -10,16 +9,15 @@ import {Subscription} from "rxjs";
 
 export class CategoryComponent implements OnInit {
   private category: string;
-  private subscription: Subscription;
 
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.subscription = this.route.params
+    this.route.params
       .subscribe((params: any) => {
-        this.category = params.id;
+        this.category = params.category;
       });
   }
 }

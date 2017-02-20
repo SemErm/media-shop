@@ -24,7 +24,7 @@ export class MoviesService {
     newMovie.type = 'movie';
     newMovie.name = movie.title;
     newMovie.poster = movie.poster_path ? (this.pathImage + movie.poster_path) : this.pathNoImage;
-    newMovie.price = (movie.vote_average * 5.5 + 5).toFixed(2);
+    newMovie.price = (movie.vote_average + 5).toFixed(2);
     newMovie.homepage = movie.homepage || 'No information';
     newMovie.vote = movie.vote_average;
     newMovie.tagline = movie.tagline || 'No information';

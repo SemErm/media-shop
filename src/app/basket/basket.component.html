@@ -1,6 +1,6 @@
 <h1>Basket</h1>
 <hr>
-<div *ngIf="basketsItems">
+<div *ngIf="basketsItems && basketsItems.length!==0">
   <div class="row" *ngFor="let sectionBasket of basketsItems">
     <div class="col-sm-4 col-md-2" *ngFor="let item of sectionBasket">
       <div class="thumbnail">

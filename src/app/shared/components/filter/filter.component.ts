@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {GamesService} from "../../services/games.service";
 import {MoviesService} from "../../services/movies.service";
 import {MusicsService} from "../../services/musics.service";
@@ -23,12 +23,15 @@ export class FilterComponent implements OnInit {
               private moviesService: MoviesService,
               private musicsService: MusicsService,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.search = this.nameFilter === 'all';
+
+    this.search = this.nameFilter === 'all' ? true : false;
     this.changeTypes(this.nameFilter);
+
     this.filterForm = this.fb.group({
       type: [this.nameFilter],
       dateTo: [],
@@ -36,12 +39,21 @@ export class FilterComponent implements OnInit {
       genres: [],
       gameMode: []
     });
-    this.filterForm.valueChanges
-      .subscribe(res => {
-        if (!this.search) return;
-        this.nameFilter = res.type;
-        this.changeTypes(res.type)
+
+    this.route.params
+      .subscribe((params: any) => {
+        this.filterForm.controls['type'].setValue(params.category);
+        this.changeTypes(params.category)
       });
+
+    this.filterForm.valueChanges
+      .subscribe(formFilter => {
+        if (!this.search) return;
+        this.nameFilter = formFilter.type;
+        this.changeTypes(formFilter.type)
+      });
+
+
   }
 
   changeTypes(type) {
@@ -77,7 +89,7 @@ export class FilterComponent implements OnInit {
     for (let val of Object.keys(this.filterForm.value)) {
       filter[val] = this.filterForm.value[val];
     }
-    this.router.navigate([`${this.nameFilter}/filter`], {queryParams: filter});
+    this.router.navigate([`/category/${this.nameFilter}/filter`], {queryParams: filter});
   }
 
   onReset() {

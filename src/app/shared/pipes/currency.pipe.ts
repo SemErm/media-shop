@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 import {Auth} from "../services/auth.service";
 
 @Pipe({name: 'currencyPrice'})
-export class CurrencyPrice implements PipeTransform {
+export class CurrencyPricePipe implements PipeTransform {
   private currency = {
     'dollar': {
       'value': 1,

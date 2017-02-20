@@ -22,8 +22,9 @@ export class AppComponent implements OnInit {
   }
 
   search() {
-    let type = this.route.snapshot.queryParams['type'] || this.router.url.split('/')[1] || 'all';
+    let type = this.route.snapshot.queryParams['type'] || this.router.url.split('/')[2] || 'all';
     this.router.navigate(['/search'], {queryParams: {'query': this.query, 'type': type}});
     this.query = '';
   }
+
 }

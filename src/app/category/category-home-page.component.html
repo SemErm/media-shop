@@ -1,1 +1,17 @@
-sdfsdfdd
+<h1>{{category | capitalLetter}}</h1>
+<hr>
+<div class="row">
+  <div class="col-sm-4 col-md-2" *ngFor="let item of newReleasesItems">
+    <app-item [item]="item"></app-item>
+  </div>
+</div>
+
+<div *ngFor="let genre of randomGenres">
+  <h1>{{genre.name | capitalLetter}}</h1>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4 col-md-2" *ngFor="let item of genre.items">
+      <app-item [item]="item"></app-item>
+    </div>
+  </div>
+</div>

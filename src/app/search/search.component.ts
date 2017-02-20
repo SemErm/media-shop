@@ -14,7 +14,7 @@ import {GamesService} from "../shared/services/games.service";
 export class SearchComponent implements OnInit {
   private subscription: Subscription;
   private items = [];
-  private type: string;
+  private typeCategory: string;
 
   constructor(private route: ActivatedRoute,
               private moviesService: MoviesService,
@@ -25,10 +25,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.route.queryParams
       .subscribe(params => {
-        this.type = params['type'];
-        switch (this.type) {
+        this.typeCategory = params['type'];
+        switch (this.typeCategory) {
           case 'movies': {
-            console.log('case movies');
             this.moviesService.gerSearchMovies(params['query'])
               .subscribe(movies => {
                 this.items = _.chunk(movies.map(movie => {
@@ -38,7 +37,6 @@ export class SearchComponent implements OnInit {
             break;
           }
           case 'musics': {
-            console.log('case musics');
             this.musicsService.getSearch(params['query'], 'album', 18)
               .subscribe(musics => {
                 this.items = _.chunk(musics.albums.items.map(music => {
@@ -48,7 +46,6 @@ export class SearchComponent implements OnInit {
             break;
           }
           case 'games': {
-            console.log('case games');
             this.items = [];
             this.gamesService.getSearch(params['query'])
               .subscribe(response => {
