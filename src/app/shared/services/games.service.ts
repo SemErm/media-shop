@@ -128,6 +128,7 @@ export class GamesService {
     for (let gameID of gamesID) {
       result.push(this.getGame(gameID.id))
     }
+    if(result.length===0) return Observable.of(result);
     return Observable.forkJoin(result)
   }
 

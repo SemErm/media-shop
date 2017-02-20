@@ -39,6 +39,7 @@ export class SearchComponent implements OnInit {
                 this.items = _.chunk(movies.map(movie => {
                   return this.moviesService.generateMovie(movie);
                 }), 6);
+                if(!this.items)this.message = 'Products not found';
               });
             break;
           }
@@ -47,7 +48,8 @@ export class SearchComponent implements OnInit {
               .subscribe(musics => {
                 this.items = _.chunk(musics.albums.items.map(music => {
                   return this.musicsService.generateMusic(music);
-                }), 6)
+                }), 6);
+                if(!this.items)this.message = 'Products not found';
               });
             break;
           }
@@ -56,6 +58,10 @@ export class SearchComponent implements OnInit {
             this.gamesService.getSearch(params['query'])
               .subscribe(response => {
                 let idsGames = _.chunk(response, 6);
+                if(!idsGames) {
+                  this.message = 'Products not found';
+                  return;
+                }
                 for (let section of idsGames) {
                   let sectionGames = [];
                   for (let idGame of section) {
@@ -78,6 +84,7 @@ export class SearchComponent implements OnInit {
               this.gamesService.getSearch(params['query'])
             )
               .subscribe(res => {
+                if(!res)this.message = 'Products not found';
                 this.gamesService.getGames(res[2])
                   .subscribe(games => {
                     result = _.concat(
