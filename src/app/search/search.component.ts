@@ -1,10 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {Subscription, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {MoviesService} from "../shared/services/movies.service";
 import * as _ from "lodash";
 import {MusicsService} from "../shared/services/musics.service";
 import {GamesService} from "../shared/services/games.service";
+
 @Component({
   moduleId: module.id,
   selector: 'app-search',
@@ -12,9 +13,9 @@ import {GamesService} from "../shared/services/games.service";
 })
 
 export class SearchComponent implements OnInit {
-  private subscription: Subscription;
   private items = [];
   private typeCategory: string;
+  private message: string;
 
   constructor(private route: ActivatedRoute,
               private moviesService: MoviesService,
@@ -23,8 +24,12 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.route.queryParams
+    this.route.queryParams
       .subscribe(params => {
+        if (params['query'] === '' || !params['query']) {
+          this.message = 'The request is not valid!';
+          return;
+        }
         this.typeCategory = params['type'];
         switch (this.typeCategory) {
           case 'movies': {

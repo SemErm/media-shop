@@ -3,12 +3,17 @@
     <filter [nameFilter]="typeCategory"></filter>
   </div>
   <div class="col-md-10">
-    <div *ngFor="let section of items">
-      <div class="row">
-        <div class="col-sm-4 col-md-2" *ngFor="let item of section">
-          <app-item [item]="item" [label]="true"></app-item>
+    <div *ngIf="items">
+      <div *ngFor="let section of items">
+        <div class="row">
+          <div class="col-sm-4 col-md-2" *ngFor="let item of section">
+            <app-item [item]="item" [label]="true"></app-item>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="text-danger">
+      <h1>{{message}}</h1>
     </div>
   </div>
 </div>

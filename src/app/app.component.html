@@ -14,12 +14,12 @@
           <li routerLinkActive="active"><a routerLink="/category/musics">Musics</a></li>
         </ul>
         <div class="navbar-form navbar-left">
-          <div class="input-group">
-            <input [(ngModel)]="query" type="search" class="form-control" placeholder="Search for..." required>
+          <form [formGroup]="searchForm" novalidate class="input-group">
+            <input formControlName="fieldSearch" type="search" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
-              <input class="btn btn-default" type="button" (click)="search()" value="Search">
+              <input formControlName="button" class="btn btn-default" type="button" (click)="search()">
             </span>
-          </div>
+          </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li routerLinkActive="active" *ngIf="auth.authenticated() && auth.userProfile"><a routerLink="/basket">

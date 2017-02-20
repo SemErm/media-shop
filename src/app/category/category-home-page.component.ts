@@ -4,6 +4,7 @@ import {MoviesService} from "../shared/services/movies.service";
 import * as _ from "lodash";
 import {MusicsService} from "../shared/services/musics.service";
 import {GamesService} from "../shared/services/games.service";
+
 @Component({
   moduleId: module.id,
   selector: 'category-home-page',

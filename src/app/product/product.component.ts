@@ -6,6 +6,8 @@ import {BasketService} from "../shared/services/basket.service";
 import {Product} from "./product";
 import {GamesService} from "../shared/services/games.service";
 import {MusicsService} from "../shared/services/musics.service";
+import {Auth} from "../shared/services/auth.service";
+import {ToasterService} from "angular2-toaster";
 
 @Component({
   moduleId: module.id,
@@ -22,7 +24,9 @@ export class ProductComponent {
               private musicService: MusicsService,
               private route: ActivatedRoute,
               private location: Location,
-              private basket: BasketService) {
+              private basket: BasketService,
+              private auth: Auth,
+              private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -33,7 +37,6 @@ export class ProductComponent {
             this.moviesService.getMovie(params['id'])
               .subscribe(movie => {
                 this.product = this.moviesService.generateMovie(movie);
-                console.log(this.product);
               });
             break;
           }
@@ -42,7 +45,6 @@ export class ProductComponent {
               .subscribe(game => {
                 this.product = this.gamesService.generateGame(game);
                 this.product.genres = this.gamesService.getNameGenres(this.product.genres);
-                console.log(this.product);
               });
             break;
           }
@@ -54,7 +56,6 @@ export class ProductComponent {
                   .subscribe(tracks => {
                     this.product.tracks = tracks;
                   });
-                console.log(this.product);
               });
             break;
           }
@@ -66,7 +67,6 @@ export class ProductComponent {
                   .subscribe(tracks => {
                     this.product.tracks = tracks;
                   });
-                console.log(this.product);
               });
             break;
           }
@@ -76,5 +76,11 @@ export class ProductComponent {
 
   goBack() {
     this.location.back();
+  }
+
+  addItem(item) {
+    this.basket.addItem(item);
+    if (this.auth.userProfile.toasts.info)
+      this.toasterService.pop('info', 'Add', `${item.name} ${item.type}`);
   }
 }

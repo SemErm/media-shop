@@ -3,10 +3,9 @@ import {Auth} from "../shared/services/auth.service";
 import {BasketService} from "../shared/services/basket.service";
 import {ModalWindowComponent} from "../shared/components/modal-window.component/modal-window.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import *as _ from "lodash";
+import * as _ from "lodash";
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {Observable} from "rxjs";
-import {Router} from "@angular/router";
 import {ConfirmationComponent} from "./confirmation.component";
 
 @Component({
@@ -31,8 +30,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private auth: Auth,
               private basketService: BasketService,
               private modalService: NgbModal,
-              private fb: FormBuilder,
-              private router: Router) {
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {

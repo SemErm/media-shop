@@ -12,7 +12,7 @@ import {Auth} from "../shared/services/auth.service";
   templateUrl: 'main-page.component.html'
 })
 export class MainPageComponent implements OnInit {
-  private resentlyGames = [];
+  private recentlyGames = [];
   private nowPlayingMovies = [];
   private newReleasesMusics = [];
 
@@ -28,7 +28,7 @@ export class MainPageComponent implements OnInit {
       .subscribe(() => {
         this.gamesService.getNewGames()
           .subscribe(games => {
-            this.resentlyGames = games.map(game => {
+            this.recentlyGames = games.map(game => {
               return this.gamesService.generateGame(game)
             });
           });
@@ -49,7 +49,7 @@ export class MainPageComponent implements OnInit {
       });
     this.gamesService.getNewGames()
       .subscribe(games => {
-        this.resentlyGames = games.map(game => {
+        this.recentlyGames = games.map(game => {
           return this.gamesService.generateGame(game)
         });
       });

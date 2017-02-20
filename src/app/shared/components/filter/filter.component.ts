@@ -11,6 +11,7 @@ import {MusicsService} from "../../services/musics.service";
   selector: 'filter',
   templateUrl: 'filter.component.html'
 })
+
 export class FilterComponent implements OnInit {
   @Input() nameFilter;
   private search: boolean = false;

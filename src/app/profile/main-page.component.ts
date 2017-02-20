@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {Auth} from "../shared/services/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -8,5 +7,5 @@ import {Auth} from "../shared/services/auth.service";
 })
 
 export class ProfileMainPageComponent{
-  constructor(private auth: Auth){}
+  constructor(){}
 }
