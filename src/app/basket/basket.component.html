@@ -1,27 +1,30 @@
 <h1>Basket</h1>
 <hr>
-<div *ngIf="basketsItems && basketsItems.length!==0">
-  <div class="row" *ngFor="let sectionBasket of basketsItems">
-    <div class="col-sm-4 col-md-2" *ngFor="let item of sectionBasket">
-      <div class="thumbnail">
-        <div class="label label-default" *ngIf="item.type==='movie'">Movie</div>
-        <div class="label label-success" *ngIf="item.type==='album'">Album</div>
-        <div class="label label-info" *ngIf="item.type==='artist'">Artist</div>
-        <div class="label label-danger" *ngIf="item.type==='game'">Game</div>
-        <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
-        <div class="caption">
-          <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
-          <p class="text-center">
-            <a class="btn btn-primary" role="button"> $ {{item.price | currencyPrice}}</a>
-          </p>
-          <div class="glyphicon glyphicon-trash remove-item" (click)="remove(item)"></div>
+<div *ngIf="basketsItems && basketsItems.length!==0" class="row">
+  <div class="col-md-10">
+    <div class="row" *ngFor="let sectionBasket of basketsItems">
+      <div class="col-sm-4 col-md-2" *ngFor="let item of sectionBasket">
+        <div class="thumbnail">
+          <div class="label label-default" *ngIf="item.type==='movie'">Movie</div>
+          <div class="label label-success" *ngIf="item.type==='album'">Album</div>
+          <div class="label label-info" *ngIf="item.type==='artist'">Artist</div>
+          <div class="label label-danger" *ngIf="item.type==='game'">Game</div>
+          <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
+          <div class="caption">
+            <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
+            <p class="text-center">
+              <a class="btn btn-primary" role="button">{{item.price | currencyPrice}}</a>
+            </p>
+            <div class="glyphicon glyphicon-trash remove-item" (click)="remove(item)"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <hr>
-  <div>
-    <a class="btn btn-warning btn-lg" routerLink="/checkout">Checkout</a>
+  <div class="col-md-2">
+    <h4 class="h4">Total price: {{totalPrice | currencyPrice}}</h4>
+    <hr>
+    <button class="btn btn-warning btn-lg btn-block" routerLink="/checkout">Checkout</button>
   </div>
 </div>
 

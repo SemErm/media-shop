@@ -27,17 +27,17 @@
   <div class="col-md-8">
     <div class="panel">
       <h3><span class="glyphicon glyphicon-film"></span> Movies price: {{priceByCategory.movies['price'] |
-        currencyPrice}}<span *ngIf="promo" class="text-danger"> -25%</span></h3>
+        currencyPrice}}<span *ngIf="promo && priceByCategory.movies['price']!==0" class="text-danger"> -25%</span></h3>
       <h4><span class="glyphicon glyphicon-film"></span> Movies items: {{priceByCategory.movies.count}}</h4>
     </div>
     <div class="panel">
       <h3><span class="glyphicon glyphicon-music"></span> Musics price: {{priceByCategory.musics['price'] |
-        currencyPrice}}<span *ngIf="promo" class="text-danger"> -25%</span></h3>
+        currencyPrice}}<span *ngIf="promo && priceByCategory.musics['price']!==0" class="text-danger"> -25%</span></h3>
       <h4><span class="glyphicon glyphicon-music"></span> Musics items: {{priceByCategory.musics.count}}</h4>
     </div>
     <div class="panel">
       <h3><span class="glyphicon glyphicon-cd"></span> Games price: {{priceByCategory.games['price'] | currencyPrice}}
-        <span *ngIf="promo" class="text-danger"> -25%</span></h3>
+        <span *ngIf="promo && priceByCategory.games['price']!==0" class="text-danger"> -25%</span></h3>
       <h4><span class="glyphicon glyphicon-cd"></span> Games items: {{priceByCategory.games.count}}</h4>
     </div>
     <h2>Total price: {{order['price'] | currencyPrice}}<span *ngIf="promo" class="text-danger"> -25%</span></h2>
@@ -45,11 +45,8 @@
   <div class="col-md-4">
     <form [formGroup]="inputPromo">
       <div class="form-group">
-        <input type="button" formControlName="order" class="btn btn-warning btn-block btn-lg" (click)="onPay()">
-      </div>
-      <div class="form-group">
-        <div class="btn-group btn-block">
-          <input formControlName="currency" type="button" class="btn btn-danger">
+        <div class="btn-group btn-group-lg" role="group">
+          <input formControlName="currency" type="button" class="btn btn-danger" (click)="onPay()">
           <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false">
             <span class="caret"></span>

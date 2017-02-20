@@ -12,6 +12,7 @@ import {Auth} from "../../services/auth.service";
 
 export class ItemComponent {
   @Input() item;
+  @Input() label;
 
   constructor(private router: Router,
               private basketService: BasketService,

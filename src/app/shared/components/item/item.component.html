@@ -1,4 +1,8 @@
 <div class="thumbnail">
+  <div class="label label-default" *ngIf="item.type==='movie' && label">Movie</div>
+  <div class="label label-success" *ngIf="item.type==='album' && label">Album</div>
+  <div class="label label-info" *ngIf="item.type==='artist' && label">Artist</div>
+  <div class="label label-danger" *ngIf="item.type==='game' && label">Game</div>
   <img [src]="item.poster" alt="{{item.name}}" (click)="goToDetail(item)">
   <div class="caption">
     <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>

@@ -2,7 +2,7 @@
   <h4 class="modal-title">The confirming order!</h4>
 </div>
 <div class="modal-body">
-  <p>Your order has been paid!</p>
+  <p>Your order has been paid using {{order.currency}}!</p>
   <h3>The total price: {{order.price | currencyPrice}}</h3>
   <p>As soon as the order is generated and sent to the following address:</p>
   <ul class="list-group">
@@ -11,7 +11,7 @@
     <li class="list-group-item">City: {{order.address.city}}</li>
     <li class="list-group-item">Street: {{order.address.street}}</li>
   </ul>
-  <p>The order will arrive in 2 weeks: {{dateOrder.toLocaleString('ru')}}</p>
+  <p>The order will arrive in 2 weeks: {{dateOrder.toLocaleString('en',options)}}</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>

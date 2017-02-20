@@ -8,3 +8,8 @@
   height: 45px;
   overflow: hidden;
 }
+.label{
+  position: absolute;
+  bottom: 25px;
+  left: 10px;
+}

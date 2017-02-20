@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class ConfirmationComponent implements OnInit {
   @Input() order;
   private dateOrder;
+  private options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   constructor(public activeModal: NgbActiveModal,
               private router: Router) {

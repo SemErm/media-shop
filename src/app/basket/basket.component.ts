@@ -14,6 +14,7 @@ import {Auth} from "../shared/services/auth.service";
 
 export class BasketComponent implements OnInit {
   private basketsItems = [];
+  private totalPrice;
 
   constructor(private basketService: BasketService,
               private router: Router,
@@ -24,11 +25,19 @@ export class BasketComponent implements OnInit {
   ngOnInit() {
     this.auth.auth
       .subscribe(() => {
+        this.calcTotalPrice();
         this.basketsItems = _.chunk(this.basketService.getItems(), 6);
       });
     if (this.auth.userProfile) {
+      this.calcTotalPrice();
       this.basketsItems = _.chunk(this.basketService.getItems(), 6);
     }
+  }
+
+  calcTotalPrice() {
+    this.totalPrice = _.sumBy(this.basketService.getItems(), (item) => {
+      return +item.price;
+    });
   }
 
   remove(item) {
@@ -36,6 +45,7 @@ export class BasketComponent implements OnInit {
     if (this.auth.userProfile.toasts.warning)
       this.toasterService.pop('warning', 'Delete', `${item.name} ${item.type}`);
     this.basketsItems = _.chunk(this.basketService.getItems(), 6);
+    this.calcTotalPrice();
   }
 
   goToDetail(item) {

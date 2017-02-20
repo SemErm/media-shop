@@ -2,7 +2,7 @@
 <hr>
 <div class="row">
   <div class="col-sm-4 col-md-2" *ngFor="let item of newReleasesItems">
-    <app-item [item]="item"></app-item>
+    <app-item [item]="item" [label]="false"></app-item>
   </div>
 </div>
 
@@ -11,7 +11,7 @@
   <hr>
   <div class="row">
     <div class="col-sm-4 col-md-2" *ngFor="let item of genre.items">
-      <app-item [item]="item"></app-item>
+      <app-item [item]="item" [label]="false"></app-item>
     </div>
   </div>
 </div>
