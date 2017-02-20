@@ -1,10 +1,9 @@
-import {Component, OnInit, Input} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router, ActivatedRoute} from "@angular/router";
-import {GamesService} from "../../services/games.service";
-import {MoviesService} from "../../services/movies.service";
-import {MusicsService} from "../../services/musics.service";
-
+import { Component, OnInit, Input } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { GamesService } from "../../services/games.service";
+import { MoviesService } from "../../services/movies.service";
+import { MusicsService } from "../../services/musics.service";
 
 @Component({
   moduleId: module.id,
@@ -53,7 +52,6 @@ export class FilterComponent implements OnInit {
         this.nameFilter = formFilter.type;
         this.changeTypes(formFilter.type)
       });
-
 
   }
 

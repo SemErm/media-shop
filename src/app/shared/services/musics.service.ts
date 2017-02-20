@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Http, RequestOptions, URLSearchParams} from "@angular/http";
+import { Injectable } from "@angular/core";
+import { Http, RequestOptions, URLSearchParams } from "@angular/http";
 import "rxjs/add/operator/map";
-import {Observable} from "rxjs";
-import {Product} from "../../product/product";
+import { Observable } from "rxjs";
+import { Product } from "../../product/product";
 
 @Injectable()
 export class MusicsService {

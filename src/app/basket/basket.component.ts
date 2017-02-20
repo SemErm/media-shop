@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {BasketService} from "../shared/services/basket.service";
+import { Component, OnInit } from "@angular/core";
+import { BasketService } from "../shared/services/basket.service";
 import * as _ from "lodash";
-import {Router} from "@angular/router";
-import {ToasterService} from "angular2-toaster";
-import {Auth} from "../shared/services/auth.service";
+import { Router } from "@angular/router";
+import { ToasterService } from "angular2-toaster";
+import { Auth } from "../shared/services/auth.service";
 
 @Component({
   moduleId: module.id,

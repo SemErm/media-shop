@@ -1,9 +1,9 @@
-import {Injectable, EventEmitter} from "@angular/core";
-import {tokenNotExpired} from "angular2-jwt";
+import { Injectable, EventEmitter } from "@angular/core";
+import { tokenNotExpired } from "angular2-jwt";
 import * as _ from "lodash";
-import {BasketService} from "./basket.service";
-import {Router} from "@angular/router";
-import {ToasterService} from "angular2-toaster";
+import { BasketService } from "./basket.service";
+import { Router } from "@angular/router";
+import { ToasterService } from "angular2-toaster";
 
 declare let Auth0Lock: any;
 

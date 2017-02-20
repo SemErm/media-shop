@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {Router} from "@angular/router";
+import { Component, Input, OnInit } from "@angular/core";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Router } from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class ConfirmationComponent implements OnInit {
   @Input() order;
   private dateOrder;
-  private options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  private options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
   constructor(public activeModal: NgbActiveModal,
               private router: Router) {

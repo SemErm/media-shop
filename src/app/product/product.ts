@@ -13,8 +13,8 @@ export class Product {
   public tagline?: string;
   public budget?: number;
   public overview?: string;
-  public label?:string;
-  public artists?:string;
-  public game_modes?:any;
-  public tracks?:any;
+  public label?: string;
+  public artists?: string;
+  public game_modes?: any;
+  public tracks?: any;
 }

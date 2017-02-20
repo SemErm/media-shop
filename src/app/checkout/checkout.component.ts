@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
-import {Auth} from "../shared/services/auth.service";
-import {BasketService} from "../shared/services/basket.service";
-import {ModalWindowComponent} from "../shared/components/modal-window.component/modal-window.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit } from "@angular/core";
+import { Auth } from "../shared/services/auth.service";
+import { BasketService } from "../shared/services/basket.service";
+import { ModalWindowComponent } from "../shared/components/modal-window.component/modal-window.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as _ from "lodash";
-import {FormGroup, FormBuilder} from "@angular/forms";
-import {Observable} from "rxjs";
-import {ConfirmationComponent} from "./confirmation.component";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { Observable } from "rxjs";
+import { ConfirmationComponent } from "./confirmation.component";
 
 @Component({
   moduleId: module.id,

@@ -1,10 +1,10 @@
-import {Component, OnInit} from "@angular/core";
-import {Auth} from "../shared/services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { Auth } from "../shared/services/auth.service";
+import { Router } from "@angular/router";
 import "rxjs/add/operator/map";
-import {Location} from "@angular/common";
-import {ToasterService} from "angular2-toaster";
-import {FormGroup, FormBuilder} from "@angular/forms";
+import { Location } from "@angular/common";
+import { ToasterService } from "angular2-toaster";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   moduleId: module.id,

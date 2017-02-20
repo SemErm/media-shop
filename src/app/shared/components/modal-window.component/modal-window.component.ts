@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {Auth} from "../../services/auth.service";
+import { Component } from "@angular/core";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Auth } from "../../services/auth.service";
 
 @Component({
   moduleId: module.id,

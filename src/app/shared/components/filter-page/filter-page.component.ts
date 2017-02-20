@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs/Subscription";
 import * as _ from "lodash";
 import "rxjs/add/operator/map";
-import {MoviesService} from "../../services/movies.service";
-import {GamesService} from "../../services/games.service";
-import {MusicsService} from "../../services/musics.service";
+import { MoviesService } from "../../services/movies.service";
+import { GamesService } from "../../services/games.service";
+import { MusicsService } from "../../services/musics.service";
 
 @Component({
   moduleId: module.id,

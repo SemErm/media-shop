@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Http, Headers, RequestOptions, URLSearchParams} from "@angular/http";
+import { Injectable } from "@angular/core";
+import { Http, Headers, RequestOptions, URLSearchParams } from "@angular/http";
 import "rxjs/add/operator/map";
 import * as _ from "lodash";
-import {Observable} from "rxjs";
-import {Product} from "../../product/product";
+import { Observable } from "rxjs";
+import { Product } from "../../product/product";
 
 const api_key = 'mOOXc4tX8Pmsh0FpTzd1KwlWjSHhp1MuPfXjsnCJsAUgGEcL9O';
 const api_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/';
@@ -68,7 +68,6 @@ export class GamesService {
         return this.newGames;
       });
   }
-
 
   getGenres() {
     if (!this.genres.length) {

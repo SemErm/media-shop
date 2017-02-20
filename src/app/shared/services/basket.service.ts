@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import * as _ from 'lodash';
+import { Injectable } from "@angular/core";
+import * as _ from "lodash";
 
 interface basket {
   clientID: number,
@@ -50,8 +50,8 @@ export class BasketService {
     this.updateBaskets();
   }
 
-  deleteItems(){
-    this.currentBasket.items=[];
+  deleteItems() {
+    this.currentBasket.items = [];
     this.updateBaskets();
   }
 

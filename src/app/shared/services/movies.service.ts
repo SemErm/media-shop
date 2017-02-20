@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Http, URLSearchParams, RequestOptions} from "@angular/http";
+import { Injectable } from "@angular/core";
+import { Http, URLSearchParams, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
-import {Observable} from "rxjs";
-import {Product} from "../../product/product";
+import { Observable } from "rxjs";
+import { Product } from "../../product/product";
 
 const api_key = '544ce33d881d9c8b4f234cc65fa42475';
 const api_url = 'https://api.themoviedb.org/3';
@@ -13,7 +13,6 @@ export class MoviesService {
   private nowPlaying = [];
   private pathImage = 'https://image.tmdb.org/t/p/w500';
   private pathNoImage = "assets/no-image.png";
-
 
   constructor(private http: Http) {
   }
@@ -107,7 +106,6 @@ export class MoviesService {
 
     return this.http.get(`${api_url}/discover/movie`, options)
       .map(res => res.json().results);
-
 
   }
 }

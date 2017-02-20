@@ -1,13 +1,13 @@
-import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Location} from "@angular/common";
-import {MoviesService} from "../shared/services/movies.service";
-import {BasketService} from "../shared/services/basket.service";
-import {Product} from "./product";
-import {GamesService} from "../shared/services/games.service";
-import {MusicsService} from "../shared/services/musics.service";
-import {Auth} from "../shared/services/auth.service";
-import {ToasterService} from "angular2-toaster";
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+import { MoviesService } from "../shared/services/movies.service";
+import { BasketService } from "../shared/services/basket.service";
+import { Product } from "./product";
+import { GamesService } from "../shared/services/games.service";
+import { MusicsService } from "../shared/services/musics.service";
+import { Auth } from "../shared/services/auth.service";
+import { ToasterService } from "angular2-toaster";
 
 @Component({
   moduleId: module.id,

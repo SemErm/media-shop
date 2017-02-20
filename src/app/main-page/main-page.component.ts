@@ -1,10 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {GamesService} from "../shared/services/games.service";
-import {MoviesService} from "../shared/services/movies.service";
+import { Component, OnInit } from "@angular/core";
+import { GamesService } from "../shared/services/games.service";
+import { MoviesService } from "../shared/services/movies.service";
 import "rxjs/add/operator/map";
-import {MusicsService} from "../shared/services/musics.service";
-import {Auth} from "../shared/services/auth.service";
-
+import { MusicsService } from "../shared/services/musics.service";
+import { Auth } from "../shared/services/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -21,7 +20,6 @@ export class MainPageComponent implements OnInit {
               private musicService: MusicsService,
               private auth: Auth) {
   }
-
 
   ngOnInit() {
     this.auth.auth

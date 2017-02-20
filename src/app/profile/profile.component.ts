@@ -1,6 +1,5 @@
-import {Component} from "@angular/core";
-import {Auth} from "../shared/services/auth.service";
-import {BasketService} from "../shared/services/basket.service";
+import { Component } from "@angular/core";
+import { Auth } from "../shared/services/auth.service";
 
 @Component({
   moduleId: module.id,

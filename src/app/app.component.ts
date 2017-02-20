@@ -1,8 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import {Auth} from "./shared/services/auth.service";
-import {BasketService} from "./shared/services/basket.service";
-import {Router, ActivatedRoute} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { Auth } from "./shared/services/auth.service";
+import { BasketService } from "./shared/services/basket.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-root',

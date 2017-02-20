@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
   moduleId: module.id,
@@ -6,6 +6,6 @@ import {Component} from "@angular/core";
   templateUrl: './main-page.component.html'
 })
 
-export class ProfileMainPageComponent{
-  constructor(){}
+export class ProfileMainPageComponent {
+  constructor() {}
 }
