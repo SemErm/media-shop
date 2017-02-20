@@ -83,7 +83,6 @@ export class MoviesService {
   }
 
   gerSearchMovies(query) {
-    console.log(query);
     let params = new URLSearchParams();
     params.set('api_key', api_key);
     params.set('query', query);

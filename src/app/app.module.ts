@@ -1,11 +1,10 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {ToasterModule} from 'angular2-toaster';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {ToasterModule} from "angular2-toaster";
+import {AppRoutingModule} from "./app-routing.module";
+import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {MoviesCategoryComponent} from "./category/movies-category/movies-category.component";
@@ -26,7 +25,8 @@ import {GamesHomePageComponent} from "./category/games-category/games-home-page.
 import {SearchComponent} from "./search/search.component";
 import {CategoryComponent} from "./category/category.component";
 import {CategoryHomePageComponent} from "./category/category-home-page.component";
-
+import {CheckoutComponent} from "./checkout/checkout.component";
+import {ConfirmationComponent} from "./checkout/confirmation.component";
 
 
 @NgModule({
@@ -49,7 +49,9 @@ import {CategoryHomePageComponent} from "./category/category-home-page.component
     GamesHomePageComponent,
     SearchComponent,
     CategoryComponent,
-    CategoryHomePageComponent
+    CategoryHomePageComponent,
+    CheckoutComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,10 @@ import {CategoryHomePageComponent} from "./category/category-home-page.component
     ToasterModule,
     NgbModule.forRoot()
   ],
-  entryComponents:[ModalWindowComponent],
+  entryComponents: [
+    ModalWindowComponent,
+    ConfirmationComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

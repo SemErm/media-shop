@@ -4,23 +4,21 @@
   <li role="presentation" routerLinkActive="active"><a routerLink="/profile/addresses">Addresses</a></li>
 </ul>
 <div class="row">
-  <div *ngIf="auth.authenticated() && auth.userProfile">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <template ngbModalContainer></template>
-        <div class="row" *ngIf="addressesUser">
-          <div class="col-md-4" *ngFor="let address of addressesUser">
-            <ul class="list-group">
-              <li class="list-group-item">{{address.country}}</li>
-              <li class="list-group-item">{{address.region}}</li>
-              <li class="list-group-item">{{address.city}}</li>
-              <li class="list-group-item">{{address.street}}</li>
-              <li class="list-group-item list-group-item-warning"><a (click)="removeAddress(address)">Delete address</a></li>
-            </ul>
-          </div>
+  <div class="panel panel-default" *ngIf="auth.authenticated() && auth.userProfile">
+    <div class="panel-body">
+      <template ngbModalContainer></template>
+      <div class="row" *ngIf="addressesUser">
+        <div class="col-md-4" *ngFor="let address of addressesUser">
+          <ul class="list-group">
+            <li class="list-group-item">Country: {{address.country}}</li>
+            <li class="list-group-item">Region: {{address.region}}</li>
+            <li class="list-group-item">City: {{address.city}}</li>
+            <li class="list-group-item">Street: {{address.street}}</li>
+            <li class="list-group-item list-group-item-warning" (click)="removeAddress(address)">Delete address</li>
+          </ul>
         </div>
-        <button class="btn btn-primary" (click)="open()">Add address</button>
       </div>
+      <button class="btn btn-primary" (click)="open()">Add address</button>
     </div>
   </div>
   <h4 *ngIf="!auth.authenticated()">You are not logged in, please click 'Log in' button to login</h4>

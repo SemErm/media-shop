@@ -12,12 +12,16 @@
         <div class="caption">
           <h4 class="text-center" (click)="goToDetail(item)">{{item.name}}</h4>
           <p class="text-center">
-            <a class="btn btn-primary" role="button" > $ {{item.price | currencyPrice}}</a>
+            <a class="btn btn-primary" role="button"> $ {{item.price | currencyPrice}}</a>
           </p>
           <div class="glyphicon glyphicon-trash remove-item" (click)="remove(item)"></div>
         </div>
       </div>
     </div>
+  </div>
+  <hr>
+  <div>
+    <a class="btn btn-warning btn-lg" routerLink="/checkout">Checkout</a>
   </div>
 </div>
 

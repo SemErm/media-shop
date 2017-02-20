@@ -51,6 +51,11 @@ export class BasketService {
     this.updateBaskets();
   }
 
+  deleteItems(){
+    this.currentBasket.items=[];
+    this.updateBaskets();
+  }
+
   getItems() {
     return this.currentBasket.items;
   }
