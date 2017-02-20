@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit {
           this.message = 'The request is not valid!';
           return;
         }
+        this.message = '';
         this.typeCategory = params['type'];
         switch (this.typeCategory) {
           case 'movies': {
